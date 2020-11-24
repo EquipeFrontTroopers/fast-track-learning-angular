@@ -1,0 +1,75 @@
+@charset "UTF-8";
+section {
+  /**Temporario**/
+  font-family: Arial;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh; }
+  @media screen and (max-width: 768px) {
+    section {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto; } }
+  section .left {
+    background-color: transparent; }
+    @media screen and (max-width: 768px) {
+      section .left {
+        display: none; } }
+    section .left .container {
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%; }
+      section .left .container img {
+        width: 100%; }
+  section .right {
+    background-color: transparent; }
+    section .right .container {
+      color: #445460;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%; }
+      @media screen and (min-width: 768px) {
+        section .right .container form img {
+          display: none; } }
+      section .right .container h1 {
+        white-space: pre-line;
+        font-size: 30px;
+        text-align: center; }
+
+/*** Aguardando  padronização do css, assim que existir, retirar este código ***/
+.form-group {
+  line-break: auto;
+  padding: 5px; }
+
+input:not([type='checkbox']) {
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  width: 100%;
+  height: 29px; }
+
+.btn-default {
+  background-color: #e19822;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  min-height: 35px; }
+
+::-webkit-input-placeholder {
+  padding: 5px;
+  color: #e4e4f2; }
+
+:-moz-placeholder {
+  padding: 5px;
+  color: #e4e4f2; }
+
+.create-access a {
+  text-decoration: none;
+  color: #e19822;
+  font-weight: bold; }
+
+.p-10 {
+  padding-top: 20px; }
+
+/*# sourceMappingURL=sign-in.component.css.map */
