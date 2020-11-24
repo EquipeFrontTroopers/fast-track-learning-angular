@@ -1,0 +1,198 @@
+{
+    "tipoUsuarios": [
+        {
+            "id": 1,
+            "descricao": "Gestor",
+            "permissao": "GL"
+        },
+        {
+            "id": 2,
+            "descricao": "Aluno",
+            "permissao": "L"
+        }
+    ],
+    "tecnologias": [
+        {
+            "id": 1,
+            "nome": "Angular"
+        },
+        {
+            "id": 2,
+            "nome": "React"
+        },
+        {
+            "id": 3,
+            "nome": "Vue"
+        },
+        {
+            "id": 4,
+            "nome": "Angular vs React vs Vue"
+        }
+    ],
+    "tipoConteudos": [
+        {
+            "id": 1,
+            "descricao": "Curso"
+        },
+        {
+            "id": 2,
+            "descricao": "Podcast"
+        },
+        {
+            "id": 3,
+            "descricao": "Post"
+        }
+    ],
+    "prioridades": [
+        {
+            "id": 1,
+            "descricao": "Obrigatório"
+        },
+        {
+            "id": 2,
+            "descricao": "Complementar"
+        }
+    ],
+    "conteudos": [
+        {
+            "id": 1,
+            "conteudo": "Fundamentos de Angular",
+            "url": "https://www.alura.com.br/curso-online-angular-fundamentos",
+            "carga_horaria": 16,
+            "tecnologiaId": 1,
+            "tipoConteudoId": 1,
+            "prioridadeId": 1
+        },
+        {
+            "id": 2,
+            "conteudo": "Angular Autenticação",
+            "url": "https://www.alura.com.br/curso-online-angular-autenticacao",
+            "carga_horaria": 12,
+            "tecnologiaId": 1,
+            "tipoConteudoId": 1,
+            "prioridadeId": 1
+        },
+        {
+            "id": 3,
+            "conteudo": "When To use Angular",
+            "url": "https://yalantis.com/blog/when-to-use-angular/",
+            "carga_horaria": null,
+            "tecnologiaId": 1,
+            "tipoConteudoId": 3,
+            "prioridadeId": 2
+        },
+        {
+            "id": 4,
+            "conteudo": "Inicial ReactJs",
+            "url": "https://www.alura.com.br/curso-online-react-js",
+            "carga_horaria": 12,
+            "tecnologiaId": 2,
+            "tipoConteudoId": 1,
+            "prioridadeId": 1
+        },
+        {
+            "id": 5,
+            "conteudo": "Ciclo de vida ReactJs",
+            "url": "https://www.alura.com.br/curso-online-react-ciclo-de-vida",
+            "carga_horaria": 12,
+            "tecnologiaId": 2,
+            "tipoConteudoId": 1,
+            "prioridadeId": 1
+        },
+        {
+            "id": 6,
+            "conteudo": "Why use react",
+            "url": "https://www.pluralsight.com/resource-center/podcasts/podcast-008-why-use-react",
+            "carga_horaria": 1,
+            "tecnologiaId": 2,
+            "tipoConteudoId": 2,
+            "prioridadeId": 2
+        },
+        {
+            "id": 7,
+            "conteudo": "Lifecycle methods with the use effect hook",
+            "url": "https://blog.logrocket.com/lifecycle-methods-with-the-useeffect-hook/",
+            "carga_horaria": null,
+            "tecnologiaId": 2,
+            "tipoConteudoId": 3,
+            "prioridadeId": 1
+        },
+        {
+            "id": 8,
+            "conteudo": "Vue parte 1",
+            "url": "https://www.alura.com.br/curso-online-vue-parte1",
+            "carga_horaria": 16,
+            "tecnologiaId": 3,
+            "tipoConteudoId": 1,
+            "prioridadeId": 1
+        },
+        {
+            "id": 9,
+            "conteudo": "Pros and cons of vueJs",
+            "url": "https://www.altexsoft.com/blog/engineering/pros-and-cons-of-vue-js/",
+            "carga_horaria": null,
+            "tecnologiaId": 3,
+            "tipoConteudoId": 3,
+            "prioridadeId": 2
+        },
+        {
+            "id": 10,
+            "conteudo": "React vs Vue vs Angular qual escolher?",
+            "url": "https://blog.geekhunter.com.br/react-vs-vue-vs-angular-qual-escolher/",
+            "carga_horaria": null,
+            "tecnologiaId": 4,
+            "tipoConteudoId": 3,
+            "prioridadeId": 1
+        },
+        {
+            "id": 11,
+            "conteudo": "Angular vs React vs Vue my thoughts",
+            "url": "https://academind.com/learn/angular/angular-vs-react-vs-vue-my-thoughts/",
+            "carga_horaria": null,
+            "tecnologiaId": 4,
+            "tipoConteudoId": 3,
+            "prioridadeId": 1
+        },
+        {
+            "id": 12,
+            "conteudo": "Angular vs React vs Vue - A Batalha dos Frameworks!!!",
+            "url": "https://www.youtube.com/watch?v=VmmA5SFN2WM",
+            "carga_horaria": 1,
+            "tecnologiaId": 4,
+            "tipoConteudoId": 3,
+            "prioridadeId": 1
+        }
+    ],
+    "usuarios": [
+        {
+            "id": 1,
+            "nome": "João Carlos Silva",
+            "nickname": "JCSilva",
+            "tipoUsuarioId": 1,
+            "email": "joao.carlos@compasso.com.br",
+            "emailVerificado": true,
+            "acessoAprovado": true,
+            "senha": "21232f297a57a5a743894a0e4a801fc3"
+        },
+        {
+            "id": 2,
+            "nome": "Matheus Alcantra",
+            "nickname": "theusAlcantra",
+            "tipoUsuarioId": 2,
+            "email": "matheus.alcantra@compasso.com.br",
+            "emailVerificado": false,
+            "acessoAprovado": false,
+            "senha": "21232f297a57a5a743894a0e4a801fc3"
+        },
+        {
+            "id": 3,
+            "nome": "Carlos Silveira",
+            "nickname": "cSilveira",
+            "tipoUsuarioId": 2,
+            "email": "carlos.silveira@compasso.com.br",
+            "emailVerificado": true,
+            "acessoAprovado": false,
+            "senha": "21232f297a57a5a743894a0e4a801fc3"
+        }
+    ]
+}
