@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HomeComponent} from './pages/home/home.component';
-import {SignInComponent} from "./components/sign-in/sign-in.component";
 
 const routes: Routes = [
   {
@@ -18,13 +17,6 @@ const routes: Routes = [
     component: HomeComponent,
     data: {
       title: 'Home'
-    }
-  },
-  {
-    path: 'signin',
-    component: SignInComponent,
-    data: {
-      title: 'Login'
     }
   },
   {
