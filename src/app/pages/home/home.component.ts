@@ -1,15 +1,6 @@
 import {Component} from '@angular/core';
-import {AuthAppService} from "../../core/auth/auth-app.service";
 
 @Component({
-  templateUrl: 'home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: 'home.component.html'
 })
-export class HomeComponent{
-
-  constructor(
-    public auth: AuthAppService
-  ) {
-  }
-
-}
+export class HomeComponent{}
