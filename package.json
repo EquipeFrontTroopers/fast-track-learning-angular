@@ -21,8 +21,10 @@
     "@angular/router": "~10.2.0",
     "@auth0/auth0-angular": "^1.2.0",
     "@sweetalert2/ngx-sweetalert2": "^8.1.1",
+    "jwt-decode": "^3.1.2",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.10.1",
+    "ts-md5": "^1.2.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
