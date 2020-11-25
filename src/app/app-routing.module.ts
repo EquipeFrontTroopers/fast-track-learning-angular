@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HomeComponent} from './pages/home/home.component';
+import {FormSignInComponent} from "./components/form-sign-in/form-sign-in.component";
 
 const routes: Routes = [
   {
