@@ -1,0 +1,23 @@
+<header>
+  <nav class="navbar">
+
+    <div class="navbar__logo">
+      <img src="./assets/img/logo-compasso.png" alt="Logo Compasso UOL">
+    </div>
+
+    <div class="navbar__items" *ngIf="isAuthenticated()">
+      <ul>
+        <li>
+          {{user.nickname}}
+        </li>
+        <li>
+          <button (click)="logoutConfirm()">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            Logout
+          </button>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+</header>
