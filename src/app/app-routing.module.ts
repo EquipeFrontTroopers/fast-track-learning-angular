@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FormSignUpComponent} from './components/form-sign-up/form-sign-up.component';
+import {SelectActionComponent} from "./components/select-action/select-action.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,13 @@ const routes: Routes = [
     component: FormSignUpComponent,
     data: {
       title: 'Cadastrar acesso'
+    }
+  },
+  {
+    path: 'selectAction',
+    component: SelectActionComponent,
+    data: {
+      title: 'Selecionar Ação'
     }
   },
   {
