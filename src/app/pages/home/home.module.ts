@@ -5,9 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
 
-import { HomeComponent } from './home/home.component';
-import { ButtonModule } from '../shared/components/button/button.module';
-import { ComponentsModule } from '../components/components.module';
+import { HomeComponent } from './home.component';
+import { ButtonModule } from './../../shared/components/button/button.module';
 
 @NgModule({
   declarations: [
@@ -18,9 +17,8 @@ import { ComponentsModule } from '../components/components.module';
     ReactiveFormsModule,
     ButtonModule,
     FormsModule,
-    RouterModule,
-    ComponentsModule
+    RouterModule
   ],
+  providers: []
 })
-export class PagesModule {
-}
+export class HomeModule { }
