@@ -1,0 +1,19 @@
+button {
+  padding: 10px 60px;
+  display: block;
+  background: #f7b718;
+  border: none;
+  color: #FFF;
+  border-radius: 10px;
+  cursor: pointer; }
+  button b {
+    font-size: 24px; }
+  button:hover {
+    background: #f5ae16;
+    transform: translateY(-1px); }
+  button:focus {
+    outline: none; }
+  button:active {
+    transform: translateY(0px); }
+
+/*# sourceMappingURL=button.component.css.map */

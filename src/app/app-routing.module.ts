@@ -1,9 +1,13 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { FormSignUpComponent } from './components/form-sign-up/form-sign-up.component';
-import { FormSignInComponent } from "./components/form-sign-in/form-sign-in.component";
+import {HomeComponent} from './pages/home/home.component';
+import {FormSignUpComponent} from './components/form-sign-up/form-sign-up.component';
+import {FormSignInComponent} from "./components/form-sign-in/form-sign-in.component";
+import {SelectActionComponent} from './components/select-action/select-action.component';
+import {AuthResolver} from './core/auth/auth.resolver';
+import {AuthRequiredGuard} from './core/auth/auth-required.guard';
+import {AuthRedirectAuth0Guard} from './core/auth/auth-redirect-auth0.guard';
 
 const routes: Routes = [
   {
@@ -22,8 +26,20 @@ const routes: Routes = [
     }
   },
   {
+    path: 'selectAction',
+    pathMatch: 'full',
+    component: SelectActionComponent,
+    canActivate: [AuthRequiredGuard],
+    data: {
+      title: 'Selecionar Ação'
+    },
+  },
+  {
     path: 'sign-in',
     component: FormSignInComponent,
+    resolve: {
+      auth: AuthResolver
+    },
     data: {
       title: 'Login'
     }
@@ -31,6 +47,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthRedirectAuth0Guard],
     data: {
       title: 'Home'
     }

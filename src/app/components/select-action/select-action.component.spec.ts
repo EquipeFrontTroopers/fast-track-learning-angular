@@ -1,16 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SelectActionComponent } from './select-action.component';
+import {SelectActionComponent} from './select-action.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ReactiveFormsModule} from '@angular/forms';
 
-describe('SelectActionComponent', () => {
+describe('O componente SelectActionComponent', () => {
   let component: SelectActionComponent;
   let fixture: ComponentFixture<SelectActionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectActionComponent ]
+      declarations: [SelectActionComponent],
+      imports: [RouterTestingModule, ReactiveFormsModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +22,9 @@ describe('SelectActionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Deve ser instanciado', () => {
     expect(component).toBeTruthy();
   });
+
+
 });
