@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthAppService} from "../../core/auth/auth-app.service";
 
 @Component({
   selector: 'app-select-action',
@@ -8,10 +7,7 @@ import {AuthAppService} from "../../core/auth/auth-app.service";
 })
 export class SelectActionComponent implements OnInit {
 
-  constructor(
-    private authAppService: AuthAppService
-  ) {
-    authAppService.handleAuth()
+  constructor() {
   }
 
   ngOnInit(): void {

@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 import {SelectActionComponent} from './select-action/select-action.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {SelectActionComponent} from './select-action/select-action.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ]
 })
 export class ComponentsModule {
