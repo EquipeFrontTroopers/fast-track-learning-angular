@@ -5,6 +5,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
+import { ComponentsModule } from './components/components.module';
+import { PagesModule } from './pages/pages.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     CoreModule,
     ErrorsModule,
-    HomeModule
+    HomeModule,
+    ComponentsModule,
+    PagesModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
