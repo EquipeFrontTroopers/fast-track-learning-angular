@@ -4,6 +4,7 @@ import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FormSignUpComponent} from './components/form-sign-up/form-sign-up.component';
 import {SelectActionComponent} from "./components/select-action/select-action.component";
+import {FormSignInComponent} from "./components/form-sign-in/form-sign-in.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,13 @@ const routes: Routes = [
     component: SelectActionComponent,
     data: {
       title: 'Selecionar Ação'
+    }
+  },
+  {
+    path: 'sign-in',
+    component: FormSignInComponent,
+    data: {
+      title: 'Login'
     }
   },
   {

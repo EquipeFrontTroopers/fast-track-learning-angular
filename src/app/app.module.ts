@@ -7,6 +7,8 @@ import {ComponentsModule} from './components/components.module';
 import {AuthAppService} from "./core/auth/auth-app.service";
 import {AuthModule} from "@auth0/auth0-angular";
 import {environment} from "../environments/environment";
+import {PagesModule} from './pages/pages.module';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {environment} from "../environments/environment";
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ComponentsModule
+    ComponentsModule,
+    PagesModule,
+    FontAwesomeModule
   ],
   providers: [
     AuthAppService
