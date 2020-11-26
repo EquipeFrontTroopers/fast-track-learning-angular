@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column; }
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 40px; }
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .page-main img {
+    width: 480px;
+    height: auto;
+    margin: 16px 0px; }
+  .page-main span {
+    display: flex;
+    margin: 16px 0px;
+    flex-direction: column;
+    align-items: center; }
+
+.title-text {
+  font-size: 24px;
+  font-weight: bold; }
+
+.orange-text {
+  font-size: 36px;
+  font-weight: bold;
+  color: #f58220; }
+
+@media only screen and (max-width: 480px) {
+  .page-header {
+    justify-content: center; }
+
+  .page-main img {
+    width: 300px; }
+
+  .orange-text {
+    font-size: 24px; } }
+
+/*# sourceMappingURL=not-found.component.css.map */
