@@ -1,4 +1,3 @@
-import { HomeModule } from './pages/home/home.module';
 import { ErrorsModule } from './errors/errors.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,7 +17,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     CoreModule,
     ErrorsModule,
-    HomeModule,
     ComponentsModule,
     PagesModule,
     FontAwesomeModule
