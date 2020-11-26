@@ -1,3 +1,5 @@
+$orange: #f7b718;
+
 .navbar {
   padding: 5px;
   display: flex;
@@ -43,14 +45,14 @@
 }
 
 .navbar__items button:hover {
-  background-color: orange;
+  background-color: $orange;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
   color: #fff;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar__logo {
     width: 100%;
     display: flex;

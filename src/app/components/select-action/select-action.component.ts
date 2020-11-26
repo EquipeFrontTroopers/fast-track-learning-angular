@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {faUser, faBook} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-select-action',
@@ -7,9 +8,13 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SelectActionComponent implements OnInit {
 
+  faUser = faUser;
+  faBook = faBook;
+
   constructor() {
   }
 
   ngOnInit(): void {
   }
+
 }

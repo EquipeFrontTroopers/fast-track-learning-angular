@@ -1,14 +1,15 @@
+import { ErrorsModule } from './errors/errors.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app-routing.module';
 import {ComponentsModule} from './components/components.module';
+import {PagesModule} from './pages/pages.module';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AuthAppService} from "./core/auth/auth-app.service";
 import {AuthModule} from "@auth0/auth0-angular";
 import {environment} from "../environments/environment";
-import {PagesModule} from './pages/pages.module';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    ErrorsModule,
     ComponentsModule,
     PagesModule,
     FontAwesomeModule
