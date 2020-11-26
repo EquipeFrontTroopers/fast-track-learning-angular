@@ -1,0 +1,44 @@
+$gray: #4B5C6B;
+
+.container {
+  height: calc(100vh - 60px);
+  display: flex;
+}
+
+.actions {
+  align-self: center;
+  display: flex;
+  flex-flow: wrap;
+  width: 100%;
+}
+
+.actions__link {
+  cursor: pointer;
+  width: calc(50% - 2em);
+  margin: 1em;
+  border: 2px solid rgb($gray, .4);
+  border-radius: 5px;
+  text-align: center;
+  padding: 3em 1em;
+  color: $gray;
+}
+
+.actions__link:hover {
+  background-color: $gray;
+  color: #fff;
+}
+
+.actions__icon {
+  margin: 1em 0;
+}
+
+.actions__title {
+  font-weight: bold;
+  margin-top: 2em;
+}
+
+@media (max-width: 768px) {
+  .actions__link {
+    width: 100%;
+  }
+}
