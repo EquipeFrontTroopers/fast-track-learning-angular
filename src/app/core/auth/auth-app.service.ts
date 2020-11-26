@@ -33,7 +33,7 @@ export class AuthAppService{
   expiresAt: number;
   loggedIn: boolean = false;
   loggedIn$ = new BehaviorSubject<boolean>( this.loggedIn );
-  loggingIn: boolean;
+  loggingIn: boolean = false;
   private md5;
 
   constructor(
@@ -94,14 +94,16 @@ export class AuthAppService{
         window.location.hash = '';
         this._getProfile( authResult );
       } else if ( err ) {
+        this.router.navigate( [ '/sign-up' ] );
         console.error( `Erro: ${err.error}` );
-      }
-      this.router.navigate( [ '/' ] );
+        }
       }
     );
   }
 
   renewToken() {
+    console.log('teste')
+
     this._auth0.checkSession( {}, ( err, authResult ) => {
       if ( authResult && authResult.accessToken ) {
         this._getProfile( authResult );
@@ -129,10 +131,15 @@ export class AuthAppService{
         tap(
           res=>{
             //aqui fazer request para auth 0
-             const authToken = res.headers.get('nome-do-token')
-            this.userService.setToken(authToken);
+
+            //  const authToken = res.headers.get('nome-do-token')
+            // this.userService.setToken(authToken);
         }
       )
-    );
+    ).subscribe(
+      response=>{
+          this.setLoggedIn(true);
+        }
+      )
   }
 }

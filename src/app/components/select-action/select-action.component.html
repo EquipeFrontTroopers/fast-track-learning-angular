@@ -1,1 +1,15 @@
-Select Action
+<header id="header" class="header">
+  <div class="header-page bg-primary">
+    <div class="header-page-authStatus">
+      <span *ngIf="authAppService.loggingIn">Logging in...</span>
+      <ng-template [ngIf]="!authAppService.loggingIn">
+        <a *ngIf="!authAppService.loggedIn" (click)="authAppService.login()">Log In</a>
+        <span *ngIf="authAppService.loggedIn && authAppService.userProfile">
+          {{ authAppService.userProfile.name }}
+          <span class="divider">|</span>
+          <a (click)="authAppService.logout()">Log Out</a>
+        </span>
+      </ng-template>
+    </div>
+  </div>
+</header>
