@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 import {User} from '../../core/model/user';
+import {AuthAppService} from '../../core/auth/auth-app.service';
+import {UserService} from '../../core/user/user.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,24 +14,18 @@ import {User} from '../../core/model/user';
 export class HeaderComponent implements OnInit {
 
   faSignOutAlt = faSignOutAlt;
-  user: User;
+  user$: Observable<any>;
 
-  constructor() {
+  constructor(public authAppService: AuthAppService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.user = {
-      id: 0,
-      nome: '',
-      nickname: 'Front Trooper\'s',
-      tipoUsuarioId: 0,
-      email: '',
-      senha: '',
-    };
+    this.user$ = this.userService.getUser();
   }
 
-  isAuthenticated(): boolean {
-    return true;
+  isLogged(): boolean {
+    return this.authAppService.isLogged();
   }
 
   logoutConfirm(): void {
@@ -48,7 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    // service auth...
+    this.authAppService.logout();
   }
 
 }

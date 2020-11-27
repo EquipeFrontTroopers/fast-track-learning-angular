@@ -4,17 +4,22 @@ const KEY = 'x-access-token';
 
 @Injectable({providedIn: 'root'})
 
-export class TokenService{
-  hasToken(){
+export class TokenService {
+
+  hasToken(): boolean {
     return !!this.getToken();
   }
-  setToken(token){
-      window.localStorage.setItem(KEY, token);
+
+  setToken(token): void {
+    window.localStorage.setItem(KEY, token);
   }
-  getToken(){
+
+  getToken(): string {
     return window.localStorage.getItem(KEY);
   }
-  removeToken(){
+
+  removeToken(): void {
     window.localStorage.removeItem(KEY);
   }
+
 }

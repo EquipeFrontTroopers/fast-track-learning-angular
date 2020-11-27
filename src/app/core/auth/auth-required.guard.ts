@@ -17,7 +17,7 @@ export class AuthRequiredGuard implements CanActivate{
   canActivate(): boolean{
     this.auth.authenticate();
     if ( !this.tokenService.hasToken() ){
-      this.router.navigate(['']);
+      this.router.navigate(['sign-in']);
       return false;
     }
     return true;

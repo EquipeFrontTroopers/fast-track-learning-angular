@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {TokenService} from '../auth/token/token.service';
 
 @Injectable({providedIn: 'root'})
-export class UserService{
+export class UserService {
   public userSubject = new BehaviorSubject<any>(null);
 
   constructor(
@@ -15,14 +15,14 @@ export class UserService{
     this.tokenService.hasToken() && this.decodeAndNotify();
   }
 
-  private decodeAndNotify(){
+  private decodeAndNotify(): void {
     const token = this.tokenService.getToken();
     const user = jwt_decode(token) as any;
 
     this.userSubject.next(user);
-
   }
-  getUser(): Observable<any>{
+
+  getUser(): Observable<any> {
     return this.userSubject.asObservable();
   }
 
