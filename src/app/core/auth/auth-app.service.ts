@@ -23,6 +23,7 @@ export class AuthAppService{
     private tokenService: TokenService
   ) {
     this.md5 = new Md5();
+    // this.authenticate();
   }
 
 
@@ -31,15 +32,10 @@ export class AuthAppService{
   }
 
   authenticate(){
-
     this.auth0.idTokenClaims$.subscribe(token => this.tokenService.setToken(token.__raw) );
     this.auth0.user$.subscribe(
       user => {
         this.userSubject.next( user );
-      },
-      error => {
-        this.tokenService.removeToken();
-        this.router.navigate(['']);
       }
     );
   }

@@ -1,18 +1,16 @@
 button {
-  padding: 10px 60px;
-  display: block;
-  background: #f7b718;
+  background-color: #f7b718;
   border: none;
-  color: #FFF;
-  border-radius: 10px;
+  border-radius: 4px;
+  color: #ffff;
+  padding: 8px 10px;
   cursor: pointer;
+  margin: 5px;
+  text-align: center;
   font-weight: bold; }
   button:hover {
-    background: #f5ae16;
-    transform: translateY(-1px); }
+    background: #f5ae16; }
   button:focus {
     outline: none; }
-  button:active {
-    transform: translateY(0px); }
 
 /*# sourceMappingURL=button.component.css.map */

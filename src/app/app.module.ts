@@ -6,9 +6,9 @@ import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app-routing.module';
 import {ComponentsModule} from './components/components.module';
 import {PagesModule} from './pages/pages.module';
-import {AuthAppService} from './core/auth/auth-app.service';
-import {AuthModule} from '@auth0/auth0-angular';
+import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import {environment} from '../environments/environment';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import {environment} from '../environments/environment';
   imports: [
     AuthModule.forRoot({
       domain: environment.auth0.domain,
-      clientId: environment.auth0.idClient
+      clientId: environment.auth0.idClient,
+      redirectUri: environment.auth0.redirect,
     }),
     BrowserModule,
     AppRoutingModule,
@@ -27,7 +28,7 @@ import {environment} from '../environments/environment';
     PagesModule
   ],
   providers: [
-    AuthAppService
+    
   ],
   bootstrap: [AppComponent]
 })
