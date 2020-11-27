@@ -1,4 +1,4 @@
-import { ErrorsModule } from './errors/errors.module';
+import {ErrorsModule} from './errors/errors.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
@@ -7,6 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {ComponentsModule} from './components/components.module';
 import {PagesModule} from './pages/pages.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {SharedModule} from './shared/shared.module';
 import {AuthAppService} from "./core/auth/auth-app.service";
 import {AuthModule} from "@auth0/auth0-angular";
 import {environment} from "../environments/environment";
@@ -26,7 +27,8 @@ import {environment} from "../environments/environment";
     ErrorsModule,
     ComponentsModule,
     PagesModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule
   ],
   providers: [
     AuthAppService

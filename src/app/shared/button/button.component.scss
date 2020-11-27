@@ -1,4 +1,4 @@
-button{
+button {
   padding: 10px 60px;
   display: block;
   background: #f7b718;
@@ -6,17 +6,18 @@ button{
   color: #FFF;
   border-radius: 10px;
   cursor: pointer;
-  b {
-    font-size: 24px;
-  }
-  &:hover{
+  font-weight: bold;
+
+  &:hover {
     background: #f5ae16;
     transform: translateY(-1px);
   }
-  &:focus{
+
+  &:focus {
     outline: none;
   }
-  &:active{
+
+  &:active {
     transform: translateY(0px);
   }
 }
