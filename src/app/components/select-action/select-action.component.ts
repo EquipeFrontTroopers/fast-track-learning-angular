@@ -8,8 +8,18 @@ import {faUser, faBook} from '@fortawesome/free-solid-svg-icons';
 })
 export class SelectActionComponent implements OnInit {
 
-  faUser = faUser;
-  faBook = faBook;
+  actions: any[] = [
+    {
+      title: 'LISTA DE USUÁRIOS',
+      icon: faUser,
+      route: './../list-users',
+    },
+    {
+      title: 'LISTA DE CONTEÚDOS',
+      icon: faBook,
+      route: '',
+    }
+  ];
 
   constructor() {
   }
