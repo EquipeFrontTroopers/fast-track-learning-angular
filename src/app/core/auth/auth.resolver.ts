@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Resolve} from '@angular/router';
-import {AuthService} from "@auth0/auth0-angular";
+import {AuthService} from '@auth0/auth0-angular';
 
 @Injectable({providedIn: 'root'})
 
@@ -11,7 +11,7 @@ export class AuthResolver implements Resolve<any>{
   ) {}
 
   resolve(): any{
-    return this.authZero.loginWithRedirect()
+    return this.authZero.loginWithRedirect();
   }
 
 

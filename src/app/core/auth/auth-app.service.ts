@@ -12,7 +12,7 @@ import {AuthService} from '@auth0/auth0-angular';
 export class AuthAppService{
   private userSubject = new BehaviorSubject<any>(null);
 
-  logged: boolean = false;
+  logged = false;
   private md5;
 
   constructor(
@@ -27,20 +27,20 @@ export class AuthAppService{
 
 
   isLogged(): boolean{
-    return this.tokenService.hasToken()
+    return this.tokenService.hasToken();
   }
 
   authenticate(){
 
-    this.auth0.idTokenClaims$.subscribe(token => this.tokenService.setToken(token.__raw) )
+    this.auth0.idTokenClaims$.subscribe(token => this.tokenService.setToken(token.__raw) );
     this.auth0.user$.subscribe(
       user => {
-        this.userSubject.next( user )
+        this.userSubject.next( user );
       },
       error => {
-        this.tokenService.removeToken()
-        this.router.navigate([''])
+        this.tokenService.removeToken();
+        this.router.navigate(['']);
       }
-    )
+    );
   }
 }

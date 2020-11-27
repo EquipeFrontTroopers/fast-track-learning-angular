@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormSignInComponent} from "./form-sign-in.component";
+import {FormSignInComponent} from './form-sign-in.component';
 
 
 @NgModule({
