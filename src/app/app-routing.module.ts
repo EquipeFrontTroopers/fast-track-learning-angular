@@ -7,7 +7,7 @@ import {FormSignInComponent} from "./components/form-sign-in/form-sign-in.compon
 import {SelectActionComponent} from './components/select-action/select-action.component';
 import {AuthResolver} from './core/auth/auth.resolver';
 import {AuthRequiredGuard} from './core/auth/auth-required.guard';
-import {AuthRedirectAuth0Guard} from './core/auth/auth-redirect-auth0.guard';
+import {UserResolver} from "./core/user/user.resolver";
 
 const routes: Routes = [
   {
@@ -29,7 +29,6 @@ const routes: Routes = [
     path: 'selectAction',
     pathMatch: 'full',
     component: SelectActionComponent,
-    canActivate: [AuthRequiredGuard],
     data: {
       title: 'Selecionar Ação'
     },
@@ -47,7 +46,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthRedirectAuth0Guard],
+    canActivate: [AuthRequiredGuard],
+    resolve: {
+      user: UserResolver
+    },
     data: {
       title: 'Home'
     }
