@@ -5,7 +5,7 @@ export const environment = {
     domain: 'dev-d1wwy-sg.us.auth0.com',
     idClient: 'Sdl0HSc3kMEtW0Zw9Jmm0neFTD9DkbBP',
     audience: 'http://localhost:4200',
-    redirect: 'http://localhost:4200',
+    redirect: 'http://localhost:4200/home',
     scope: 'openid profile'
   },
   auth0Api:{

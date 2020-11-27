@@ -6,7 +6,7 @@ import {TokenService} from "../auth/token/token.service";
 
 @Injectable({providedIn: 'root'})
 export class UserService{
-  private userSubject = new BehaviorSubject<any>(null);
+  public userSubject = new BehaviorSubject<any>(null);
 
   constructor(
     private http: HttpClient,
