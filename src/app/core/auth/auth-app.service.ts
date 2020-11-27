@@ -9,7 +9,7 @@ import {TokenService} from './token/token.service';
 import {AuthService} from '@auth0/auth0-angular';
 
 @Injectable({providedIn: 'root'})
-export class AuthAppService{
+export class AuthAppService {
   private userSubject = new BehaviorSubject<any>(null);
 
   logged = false;
@@ -23,20 +23,29 @@ export class AuthAppService{
     private tokenService: TokenService
   ) {
     this.md5 = new Md5();
-    // this.authenticate();
   }
 
 
-  isLogged(): boolean{
+  isLogged(): boolean {
     return this.tokenService.hasToken();
   }
 
-  authenticate(){
-    this.auth0.idTokenClaims$.subscribe(token => this.tokenService.setToken(token.__raw) );
+  logout(): void {
+    this.tokenService.removeToken();
+    this.router.navigate(['sign-in']).then();
+  }
+
+  authenticate(): void {
+    this.auth0.idTokenClaims$.subscribe(token => this.tokenService.setToken(token.__raw));
     this.auth0.user$.subscribe(
       user => {
-        this.userSubject.next( user );
+        this.userSubject.next(user);
+      },
+      () => {
+        this.tokenService.removeToken();
+        this.router.navigate(['']);
       }
     );
   }
+
 }
