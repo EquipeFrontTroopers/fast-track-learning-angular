@@ -6,11 +6,9 @@ import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app-routing.module';
 import {ComponentsModule} from './components/components.module';
 import {PagesModule} from './pages/pages.module';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {SharedModule} from './shared/shared.module';
-import {AuthAppService} from "./core/auth/auth-app.service";
-import {AuthModule} from "@auth0/auth0-angular";
-import {environment} from "../environments/environment";
+import {AuthAppService} from './core/auth/auth-app.service';
+import {AuthModule} from '@auth0/auth0-angular';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -26,9 +24,7 @@ import {environment} from "../environments/environment";
     CoreModule,
     ErrorsModule,
     ComponentsModule,
-    PagesModule,
-    FontAwesomeModule,
-    SharedModule
+    PagesModule
   ],
   providers: [
     AuthAppService

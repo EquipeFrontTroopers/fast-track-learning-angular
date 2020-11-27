@@ -1,0 +1,61 @@
+<div class="container">
+
+  <div class="list-users__title">
+    <h1>LISTA DE USUÁRIOS</h1>
+  </div>
+
+  <div class="list-users__buttons">
+    <app-button title="Filtrar">
+      <fa-icon [icon]="faFilter"></fa-icon>
+      Filtrar
+    </app-button>
+    <app-button title="Adicionar usuário">
+      <fa-icon [icon]="faPlusCircle"></fa-icon>
+      Adicionar usuário
+    </app-button>
+  </div>
+
+  <div class="list-users__table--responsive">
+    <table class="list-users__table">
+      <thead>
+      <tr>
+        <th>NOME</th>
+        <th>EMAIL</th>
+        <th>PERMISSÃO</th>
+        <th>ACÃO</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of users">
+
+        <td>
+          {{u.nome}}
+        </td>
+
+        <td>
+          {{u.email}}
+        </td>
+
+        <td>
+          PERMISSÃO
+        </td>
+
+        <td>
+          <app-button title="Aprovar" (click)="aprovRejectUser(u, true)">
+            <fa-icon [icon]="faCheck"></fa-icon>
+          </app-button>
+          <app-button title="Reprovar" (click)="aprovRejectUser(u, false)">
+            <fa-icon [icon]="faTimes"></fa-icon>
+          </app-button>
+          <app-button title="Editar">
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </app-button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+

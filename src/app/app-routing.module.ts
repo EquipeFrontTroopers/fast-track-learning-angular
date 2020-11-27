@@ -3,17 +3,18 @@ import {Routes, RouterModule} from '@angular/router';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import {HomeComponent} from './pages/home/home.component';
 import {FormSignUpComponent} from './components/form-sign-up/form-sign-up.component';
-import {FormSignInComponent} from "./components/form-sign-in/form-sign-in.component";
+import {FormSignInComponent} from './components/form-sign-in/form-sign-in.component';
 import {SelectActionComponent} from './components/select-action/select-action.component';
 import {AuthResolver} from './core/auth/auth.resolver';
 import {AuthRequiredGuard} from './core/auth/auth-required.guard';
-import {UserResolver} from "./core/user/user.resolver";
+import {UserResolver} from './core/user/user.resolver';
+import {ListUsersComponent} from './components/list-users/list-users.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: 'sign-in',
     data: {
       title: ''
     }
@@ -26,11 +27,17 @@ const routes: Routes = [
     }
   },
   {
-    path: 'selectAction',
-    pathMatch: 'full',
+    path: 'select-action',
     component: SelectActionComponent,
     data: {
       title: 'Selecionar Ação'
+    },
+  },
+  {
+    path: 'list-users',
+    component: ListUsersComponent,
+    data: {
+      title: 'Listar usuários'
     },
   },
   {
