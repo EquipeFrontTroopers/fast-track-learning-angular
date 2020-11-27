@@ -8,6 +8,7 @@ import {SelectActionComponent} from './components/select-action/select-action.co
 import {AuthResolver} from './core/auth/auth.resolver';
 import {AuthRequiredGuard} from './core/auth/auth-required.guard';
 import {UserResolver} from './core/user/user.resolver';
+import {ListUsersComponent} from './components/list-users/list-users.component';
 
 const routes: Routes = [
   {
@@ -27,10 +28,16 @@ const routes: Routes = [
   },
   {
     path: 'select-action',
-    pathMatch: 'full',
     component: SelectActionComponent,
     data: {
       title: 'Selecionar Ação'
+    },
+  },
+  {
+    path: 'list-users',
+    component: ListUsersComponent,
+    data: {
+      title: 'Listar usuários'
     },
   },
   {

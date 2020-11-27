@@ -1,0 +1,38 @@
+$gray: #4B5C6B;
+
+.list-users__title {
+  text-align: center;
+  margin: 3em 0;
+}
+
+.list-users__buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 3em 0;
+}
+
+.list-users__table--responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 3em;
+}
+
+.list-users__table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.list-users__table th {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid rgb($gray, .4);
+}
+
+.list-users__table td {
+  margin: 0;
+  vertical-align: middle !important;
+  padding: .75rem;
+  border: 1px solid rgb($gray, .4);
+}
