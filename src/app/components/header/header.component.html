@@ -10,7 +10,7 @@
     <div class="navbar__items" *ngIf="isLogged()">
       <ul>
         <li>
-          {{(user$ | async).name}}
+          {{(user$ | async)?.name}}
         </li>
         <li>
           <button (click)="logoutConfirm()">

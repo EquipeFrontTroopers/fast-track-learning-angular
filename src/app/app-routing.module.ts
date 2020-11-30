@@ -27,7 +27,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'sign-in', pathMatch: 'full'},
       {path: 'sign-up', component: FormSignUpComponent, data: {title: 'Cadastrar acesso'}},
-      {path: 'sign-in', component: FormSignInComponent, resolve: {auth: AuthResolver}, data: {title: 'Login'}},
+      {path: 'sign-in', component: FormSignInComponent, data: {title: 'Login'}},
     ]
   },
 
