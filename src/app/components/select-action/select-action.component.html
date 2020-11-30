@@ -2,14 +2,19 @@
 
   <section class="actions">
 
-    <ng-container *ngFor="let a of actions">
-      <a [routerLink]="a.route" class="actions__link">
-        <div class="actions__icon">
-          <fa-icon [icon]="a.icon" size="6x"></fa-icon>
-        </div>
-        <div class="actions__title">{{a.title}}</div>
-      </a>
-    </ng-container>
+    <a [routerLink]="'./../list-users'" class="actions__link">
+      <div class="actions__icon">
+        <fa-icon [icon]="faUser" size="6x"></fa-icon>
+      </div>
+      <div class="actions__title">LISTA DE USUÁRIOS</div>
+    </a>
+
+    <a href="https://fast-track-learning-react.herokuapp.com" class="actions__link">
+      <div class="actions__icon">
+        <fa-icon [icon]="faBook" size="6x"></fa-icon>
+      </div>
+      <div class="actions__title">LISTA DE CONTEÚDOS</div>
+    </a>
 
   </section>
 

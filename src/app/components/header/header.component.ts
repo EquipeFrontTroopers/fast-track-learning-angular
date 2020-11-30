@@ -14,14 +14,14 @@ import {Observable} from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   faSignOutAlt = faSignOutAlt;
-  user$: Observable<any>;
+  user: any;
 
   constructor(public authAppService: AuthAppService,
               private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userService.getUser();
+    this.userService.getUser().subscribe(user => this.user = user);
   }
 
   isLogged(): boolean {

@@ -1,16 +1,18 @@
 <header class="container">
   <nav class="navbar">
 
-    <a [routerLink]="''" title="Página inicial">
-      <img class="navbar__logo"
-           src="./assets/img/logo-compasso.png"
-           alt="Logo Compasso UOL">
-    </a>
+    <div class="navbar__logo">
+      <a [routerLink]="''" title="Página inicial">
+        <img class="navbar__logo__image"
+             src="./assets/img/logo-compasso.png"
+             alt="Logo Compasso UOL">
+      </a>
+    </div>
 
     <div class="navbar__items" *ngIf="isLogged()">
       <ul>
         <li>
-          {{(user$ | async)?.name}}
+          {{user.name}}
         </li>
         <li>
           <button (click)="logoutConfirm()">

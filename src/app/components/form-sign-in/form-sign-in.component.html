@@ -6,26 +6,28 @@
   </div>
   <div class="right">
     <div class="container">
-      <form [formGroup]="formSignIn" (ngSubmit)="login()" #form="ngForm">
+      <form [formGroup]="formSignIn">
         <h1>FAST TRACK LEARNING</h1>
         <div class="form-group">
-          <input type="text"
+          <input class="form-content-item"
+                 type="text"
                  placeholder="Email ou nome de usuário"
-                 formControlName="email"
-
-          >
+                 formControlName="email">
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Senha" formControlName="password">
+          <input class="form-content-item"
+                 type="password"
+                 placeholder="Senha"
+                 formControlName="password">
         </div>
         <div class="form-group">
           <input type="checkbox"> Lembrar-me
         </div>
         <div class="form-group">
-          <input type="submit" value="Login" class="btn-default">
+          <app-button [btnBlock]="true" (click)="login()">Login</app-button>
         </div>
         <div class="form-group p-10">
-          <span>Não possui acesso?<a [routerLink]="['/sign-up']"> Criar acesso</a></span>
+          <span>Não possui acesso?<a [routerLink]="'/sign-up'"> Criar acesso</a></span>
         </div>
       </form>
     </div>
