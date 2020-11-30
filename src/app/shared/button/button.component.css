@@ -1,0 +1,16 @@
+button {
+  background-color: #f7b718;
+  border: none;
+  border-radius: 4px;
+  color: #ffff;
+  padding: 8px 10px;
+  cursor: pointer;
+  margin: 5px;
+  text-align: center;
+  font-weight: bold; }
+  button:hover {
+    background: #f5ae16; }
+  button:focus {
+    outline: none; }
+
+/*# sourceMappingURL=button.component.css.map */

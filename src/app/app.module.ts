@@ -6,18 +6,17 @@ import {CoreModule} from './core/core.module';
 import {AppRoutingModule} from './app-routing.module';
 import {ComponentsModule} from './components/components.module';
 import {AuthAppService} from './core/auth/auth-app.service';
-import {AuthModule} from '@auth0/auth0-angular';
+import { FormsModule } from '@angular/forms';
 import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    AuthModule.forRoot({
-      domain: environment.auth0.domain,
-      clientId: environment.auth0.idClient
-    }),
+    AngularFireModule.initializeApp (environment.firebase),
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,

@@ -2,50 +2,70 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
-import {Md5} from 'ts-md5/dist/md5';
-import {BehaviorSubject, Observable} from 'rxjs';
 import {UserService} from '../user/user.service';
 import {TokenService} from './token/token.service';
-import {AuthService} from '@auth0/auth0-angular';
+import {AngularFireAuth} from '@angular/fire/auth';
+import Swal from 'sweetalert2';
+import {AngularFirestoreDocument} from '@angular/fire/firestore';
+import firebase from 'firebase';
+import User = firebase.User;
+
+
 
 @Injectable({providedIn: 'root'})
-export class AuthAppService {
-  private userSubject = new BehaviorSubject<any>(null);
-
-  logged = false;
-  private md5;
+export class AuthAppService{
+  authInvalid: string;
 
   constructor(
     private userService: UserService,
     private http: HttpClient,
-    private auth0: AuthService,
     private router: Router,
-    private tokenService: TokenService
-  ) {
-    this.md5 = new Md5();
-  }
+    private tokenService: TokenService,
+    public  afAuth: AngularFireAuth,
+  ) {}
 
-
-  isLogged(): boolean {
+  isLogged(): boolean{
     return this.tokenService.hasToken();
   }
 
-  logout(): void {
-    this.tokenService.removeToken();
-    this.router.navigate(['sign-in']).then();
-  }
+  async login(email: string, password: string): Promise<any> {
 
-  authenticate(): void {
-    this.auth0.idTokenClaims$.subscribe(token => this.tokenService.setToken(token.__raw));
-    this.auth0.user$.subscribe(
-      user => {
-        this.userSubject.next(user);
-      },
-      () => {
-        this.tokenService.removeToken();
-        this.router.navigate(['']);
+      return await this.afAuth.signInWithEmailAndPassword(email, password).catch(
+        e => {
+          let errorMessage = '';
+          switch ( e.code ) {
+            case 'auth/invalid-email':
+              errorMessage = 'E-mail inválido';
+              break;
+            case 'auth/wrong-password':
+              errorMessage = 'Senha incorreta';
+              break;
+            case 'auth/user-not-found':
+              errorMessage = 'Usuário não encontrado';
+              break;
+          }
+          Swal.fire({
+            title: 'Erro',
+            html: errorMessage ? errorMessage : e.message,
+            icon: 'warning',
+            cancelButtonText: 'Ok'
+          });
       }
     );
   }
 
+  SignUp(email: string, password: string): Promise<any>{
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        result.user.sendEmailVerification();
+      }).catch((error) => {
+        window.alert(error.message);
+      });
+  }
+
+  logout(): void{
+    this.tokenService.removeToken();
+    this.afAuth.signOut();
+    this.router.navigate(['sign-in']);
+  }
 }
