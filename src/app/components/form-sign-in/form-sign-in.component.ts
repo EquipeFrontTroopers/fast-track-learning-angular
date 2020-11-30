@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 import {AuthAppService} from '../../core/auth/auth-app.service';
-import {Router} from '@angular/router';
 import {TokenService} from '../../core/auth/token/token.service';
-import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-form-sign-in',
@@ -35,10 +35,6 @@ export class FormSignInComponent implements OnInit {
   login(): void{
     const email = this.formSignIn.get('email').value;
     const password = this.formSignIn.get('password').value;
-
-    if( this.formSignIn.get('email').errors?.pattern){
-
-    }
 
     if (this.formSignIn.valid && !this.formSignIn.pending) {
       this.authAppService.login( email, password ).then(

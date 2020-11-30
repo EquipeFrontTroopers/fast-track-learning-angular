@@ -1,53 +1,64 @@
-<form [formGroup]="formSignUp" (ngSubmit)="submit()">
-
-  <div class="form__group">
-    <label for="email"></label>
-    <input class="form__input"
-           formControlName="email"
-           placeholder="Email"
-           type="text"
-           id="email">
-    <small *ngIf="inputHasError('email')">Email é obrigatório</small>
+<section>
+  <div class="left">
+    <div class="container">
+      <img src="../../../assets/img/login.svg">
+    </div>
   </div>
+  <div class="right">
+    <div class="container">
+      <form [formGroup]="formSignUp" (ngSubmit)="submit()">
+        <h1>FAST TRACK LEARNING</h1>
+        <div class="form-group">
+          <label for="email"></label>
+          <input class="form__input"
+                 formControlName="email"
+                 placeholder="Email"
+                 type="text"
+                 id="email">
+          <small *ngIf="inputHasError('email')">Email é obrigatório</small>
+        </div>
 
-  <div class="">
-    <label for="nickname"></label>
-    <input formControlName="nickname"
-           placeholder="Nickname"
-           type="text"
-           id="nickname">
-    <small *ngIf="inputHasError('nickname')">Nickname é obrigatório</small>
+        <!--  <div class="">-->
+        <!--    <label for="nickname"></label>-->
+        <!--    <input formControlName="nickname"-->
+        <!--           placeholder="Nickname"-->
+        <!--           type="text"-->
+        <!--           id="nickname">-->
+        <!--    <small *ngIf="inputHasError('nickname')">Nickname é obrigatório</small>-->
+        <!--  </div>-->
+
+        <!--  <div class="">-->
+        <!--    <label for="name"></label>-->
+        <!--    <input formControlName="name"-->
+        <!--           placeholder="Nome de usuário"-->
+        <!--           type="text"-->
+        <!--           id="name">-->
+        <!--    <small *ngIf="inputHasError('name')">Nome de usuário é obrigatório</small>-->
+        <!--  </div>-->
+
+        <div class="form-group">
+          <label for="password"></label>
+          <input formControlName="password"
+                 placeholder="Senha"
+                 type="password"
+                 id="password">
+          <small *ngIf="inputHasError('password')">Senha é obrigatório</small>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordRepeat"></label>
+          <input formControlName="passwordRepeat"
+                 placeholder="Repita a senha"
+                 type="password"
+                 id="passwordRepeat">
+          <small *ngIf="inputHasError('passwordRepeat')">Senhas não correspondem</small>
+        </div>
+        <div class="form-group p-10">
+          <span>Já possui acesso?<a [routerLink]="['/sign-in']"> Fazer login</a></span>
+        </div>
+        <input type="submit" [disabled]="this.formSignUp.invalid" value="Cadastrar" class="btn-default">
+      </form>
+    </div>
   </div>
+</section>
 
-  <div class="">
-    <label for="name"></label>
-    <input formControlName="name"
-           placeholder="Nome de usuário"
-           type="text"
-           id="name">
-    <small *ngIf="inputHasError('name')">Nome de usuário é obrigatório</small>
-  </div>
-
-  <div class="">
-    <label for="password"></label>
-    <input formControlName="password"
-           placeholder="Senha"
-           type="password"
-           id="password">
-    <small *ngIf="inputHasError('password')">Senha é obrigatório</small>
-  </div>
-
-  <div class="">
-    <label for="passwordRepeat"></label>
-    <input formControlName="passwordRepeat"
-           placeholder="Repita a senha"
-           type="password"
-           id="passwordRepeat">
-    <small *ngIf="inputHasError('passwordRepeat')">Senhas não correspondem</small>
-  </div>
-
-  <button class="block" [disabled]="this.formSignUp.invalid">Cadastrar</button>
-
-</form>
-
-Já possui acesso? <a [routerLink]="['/sign-in']">Fazer login</a>

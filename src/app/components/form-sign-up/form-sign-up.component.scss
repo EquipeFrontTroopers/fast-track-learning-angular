@@ -1,0 +1,55 @@
+$snow-forest: #445460;
+section {
+  /**Temporario**/
+  font-family: Arial;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .left {
+    background-color: transparent;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+
+    .container {
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .right {
+    background-color: transparent;
+    .container {
+      form img{
+        @media screen and (min-width: 768px) {
+          display: none;
+        }
+      }
+      color: $snow-forest;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      h1 {
+        white-space: pre-line;
+        font-size: 30px;
+        text-align: center;
+      }
+    }
+  }
+}
+

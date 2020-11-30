@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
 import {debounceTime, filter} from 'rxjs/operators';
+import {AuthAppService} from '../../core/auth/auth-app.service';
 
 @Component({
   selector: 'app-form-sign-up',
@@ -13,7 +14,9 @@ export class FormSignUpComponent implements OnInit {
 
   formSignUp: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+              private authAppService: AuthAppService,
+              private formBuilder: FormBuilder,
               private router: Router) {
   }
 
@@ -23,14 +26,14 @@ export class FormSignUpComponent implements OnInit {
         [
           '', [Validators.required, Validators.email, Validators.pattern('[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?')]
         ],
-      nickname:
-        [
-          '', [Validators.required, Validators.minLength(3)]
-        ],
-      name:
-        [
-          '', [Validators.required, Validators.minLength(3)]
-        ],
+      // nickname:
+      //   [
+      //     '', [Validators.required, Validators.minLength(3)]
+      //   ],
+      // name:
+      //   [
+      //     '', [Validators.required, Validators.minLength(3)]
+      //   ],
       password:
         [
           '', [Validators.required, Validators.minLength(8)]
@@ -67,7 +70,11 @@ export class FormSignUpComponent implements OnInit {
   }
 
   submit(): void {
+    const email = this.formSignUp.get('email').value;
+    const password = this.formSignUp.get('password').value;
+
     if (this.formSignUp.valid) {
+      this.authAppService.SignUp(email, password);
       Swal.fire('Sucesso', 'Acesso cadastrado', 'success')
         .then(() => this.router.navigate(['']).then());
     }
