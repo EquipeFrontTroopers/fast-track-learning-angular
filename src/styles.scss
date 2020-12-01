@@ -10,7 +10,15 @@ body, * {
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  animation: moveBody 3s;
+}
 
+
+@keyframes moveBody {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}
 @font-face {
   font-family: 'Mark Pro';
   src: url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.eot'); /* IE9 Compat Modes */
@@ -19,7 +27,6 @@ body, * {
   url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.ttf') format('truetype'), /* Safari, Android, iOS */
   url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.svg') format('svg'); /* Legacy iOS */
 }
-/*** Aguardando  padronização do css, assim que existir, retirar este código ***/
 .form-group {
   line-break: auto;
   padding: 5px;
@@ -62,3 +69,4 @@ input:not([type='checkbox']) {
 .p-10 {
   padding-top: 20px;
 }
+

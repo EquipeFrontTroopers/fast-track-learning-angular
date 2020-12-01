@@ -12,15 +12,17 @@
           <input type="text"
                  placeholder="Email ou nome de usuário"
                  formControlName="email"
-
           >
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!formSignIn.get('remember').value">
           <input type="password" placeholder="Senha" formControlName="password">
         </div>
-        <div class="form-group">
-          <input type="checkbox"> Lembrar-me
+        <div class="form-group" *ngIf="formSignIn.get('remember').value">
+          <input type="password" placeholder="Nova Senha" formControlName="new_password" autocomplete="off">
         </div>
+<!--        <div class="form-group">-->
+<!--          <input type="checkbox" formControlName="remember"> Esqueceu senha?-->
+<!--        </div>-->
         <div class="form-group">
           <input type="submit" value="Login" class="btn-default">
         </div>

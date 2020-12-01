@@ -17,15 +17,13 @@
                  id="email">
           <small *ngIf="inputHasError('email')">Email é obrigatório</small>
         </div>
-
-        <!--  <div class="">-->
-        <!--    <label for="nickname"></label>-->
-        <!--    <input formControlName="nickname"-->
-        <!--           placeholder="Nickname"-->
-        <!--           type="text"-->
-        <!--           id="nickname">-->
-        <!--    <small *ngIf="inputHasError('nickname')">Nickname é obrigatório</small>-->
-        <!--  </div>-->
+        <div class="form-group">
+          <input formControlName="nickname"
+                 placeholder="Apelido"
+                 type="text"
+                 id="nickname">
+          <small *ngIf="inputHasError('nickname')">Nickname é obrigatório</small>
+        </div>
 
         <!--  <div class="">-->
         <!--    <label for="name"></label>-->

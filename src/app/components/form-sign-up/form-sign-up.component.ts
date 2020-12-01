@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import Swal from 'sweetalert2';
 import {debounceTime, filter} from 'rxjs/operators';
 import {AuthAppService} from '../../core/auth/auth-app.service';
 
@@ -24,12 +23,12 @@ export class FormSignUpComponent implements OnInit {
     this.formSignUp = this.formBuilder.group({
       email:
         [
-          '', [Validators.required, Validators.email, Validators.pattern('[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?')]
+          '', [Validators.required, Validators.email]
         ],
-      // nickname:
-      //   [
-      //     '', [Validators.required, Validators.minLength(3)]
-      //   ],
+      nickname:
+        [
+          '', [Validators.required, Validators.minLength(3)]
+        ],
       // name:
       //   [
       //     '', [Validators.required, Validators.minLength(3)]
@@ -72,12 +71,10 @@ export class FormSignUpComponent implements OnInit {
   submit(): void {
     const email = this.formSignUp.get('email').value;
     const password = this.formSignUp.get('password').value;
+    const nickName = this.formSignUp.get('nickname').value;
 
     if (this.formSignUp.valid) {
-      this.authAppService.SignUp(email, password);
-      Swal.fire('Sucesso', 'Acesso cadastrado', 'success')
-        .then(() => this.router.navigate(['']).then());
+      this.authAppService.SignUp(email, password, nickName).then();
     }
   }
-
 }
