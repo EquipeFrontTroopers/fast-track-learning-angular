@@ -5,5 +5,6 @@ export interface User {
   tipoUsuarioId: number;
   email: string;
   senha: string;
+  acessoAprovado: boolean;
 }
 
