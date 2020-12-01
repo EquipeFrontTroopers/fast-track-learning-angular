@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AbstractService} from './abstract.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {TypeUser} from '../model/type-user';
 import {User} from '../model/user';
@@ -24,19 +24,19 @@ export class ListUserService extends AbstractService {
     return this.http.put<any>(`${this.urlBase}/usuarios/${user.id}`, user);
   }
 
-  getTypeUsers(): Observable<TypeUser[]> {
+  getAllTypeUsers(): Observable<TypeUser[]> {
     return this.http.get<TypeUser[]>(`${this.urlBase}/tipoUsuarios `);
   }
 
-  getAllUsers(): Observable<User[]> {
+  getAll(): Observable<User[]> {
     return this.http.get<User[]>(`${this.urlBase}/usuarios`);
   }
 
-  approveUser(user: User): Observable<any> {
+  approve(user: User): Observable<any> {
     return this.http.put<any>(`${this.urlBase}/usuarios/${user.id}`, user);
   }
 
-  rejectUser(user: User): Observable<any> {
+  reject(user: User): Observable<any> {
     return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
 

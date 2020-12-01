@@ -31,8 +31,8 @@ export class ListUsersComponent implements OnInit {
 
   getTypesAndUsers(): void {
     forkJoin([
-      this.listUserService.getAllUsers(),
-      this.listUserService.getTypeUsers()
+      this.listUserService.getAll(),
+      this.listUserService.getAllTypeUsers()
     ]).subscribe(([users, types]) => {
       this.users = users;
       this.typesUser = types;
@@ -191,7 +191,7 @@ export class ListUsersComponent implements OnInit {
 
   approveUser(user: User): void {
     this.listUserService
-      .approveUser(user)
+      .approve(user)
       .subscribe(
         () => {
           Swal
@@ -204,7 +204,7 @@ export class ListUsersComponent implements OnInit {
 
   reproveUser(user: User): void {
     this.listUserService
-      .rejectUser(user)
+      .reject(user)
       .subscribe(
         () => {
           Swal
