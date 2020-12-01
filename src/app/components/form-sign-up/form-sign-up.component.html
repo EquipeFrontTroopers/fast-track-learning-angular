@@ -10,13 +10,14 @@
         <h1>FAST TRACK LEARNING</h1>
         <div class="form-group">
           <label for="email"></label>
-          <input class="form__input"
+          <input class="form-content-item"
                  formControlName="email"
                  placeholder="Email"
                  type="text"
                  id="email">
           <small *ngIf="inputHasError('email')">Email é obrigatório</small>
         </div>
+
         <div class="form-group">
           <input formControlName="nickname"
                  placeholder="Apelido"
@@ -25,19 +26,11 @@
           <small *ngIf="inputHasError('nickname')">Nickname é obrigatório</small>
         </div>
 
-        <!--  <div class="">-->
-        <!--    <label for="name"></label>-->
-        <!--    <input formControlName="name"-->
-        <!--           placeholder="Nome de usuário"-->
-        <!--           type="text"-->
-        <!--           id="name">-->
-        <!--    <small *ngIf="inputHasError('name')">Nome de usuário é obrigatório</small>-->
-        <!--  </div>-->
-
         <div class="form-group">
           <label for="password"></label>
           <input formControlName="password"
                  placeholder="Senha"
+                 class="form-content-item"
                  type="password"
                  id="password">
           <small *ngIf="inputHasError('password')">Senha é obrigatório</small>
@@ -46,15 +39,20 @@
         <div class="form-group">
           <label for="passwordRepeat"></label>
           <input formControlName="passwordRepeat"
+                 class="form-content-item"
                  placeholder="Repita a senha"
                  type="password"
                  id="passwordRepeat">
           <small *ngIf="inputHasError('passwordRepeat')">Senhas não correspondem</small>
         </div>
+        <app-button [disabled]="this.formSignUp.invalid"
+                    [btnBlock]="true"
+                    (click)="submit()">
+          Cadastrar
+        </app-button>
         <div class="form-group p-10">
           <span>Já possui acesso?<a [routerLink]="['/sign-in']"> Fazer login</a></span>
         </div>
-        <input type="submit" [disabled]="this.formSignUp.invalid" value="Cadastrar" class="btn-default">
       </form>
     </div>
   </div>
