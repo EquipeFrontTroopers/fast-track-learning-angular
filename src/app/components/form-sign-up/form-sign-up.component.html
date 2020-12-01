@@ -6,7 +6,7 @@
   </div>
   <div class="right">
     <div class="container">
-      <form [formGroup]="formSignUp">
+      <form [formGroup]="formSignUp" (ngSubmit)="submit()">
         <h1>FAST TRACK LEARNING</h1>
         <div class="form-group">
           <label for="email"></label>
@@ -19,10 +19,18 @@
         </div>
 
         <div class="form-group">
+          <input formControlName="nickname"
+                 placeholder="Apelido"
+                 type="text"
+                 id="nickname">
+          <small *ngIf="inputHasError('nickname')">Nickname é obrigatório</small>
+        </div>
+
+        <div class="form-group">
           <label for="password"></label>
-          <input class="form-content-item"
-                 formControlName="password"
+          <input formControlName="password"
                  placeholder="Senha"
+                 class="form-content-item"
                  type="password"
                  id="password">
           <small *ngIf="inputHasError('password')">Senha é obrigatório</small>
@@ -30,8 +38,8 @@
 
         <div class="form-group">
           <label for="passwordRepeat"></label>
-          <input class="form-content-item"
-                 formControlName="passwordRepeat"
+          <input formControlName="passwordRepeat"
+                 class="form-content-item"
                  placeholder="Repita a senha"
                  type="password"
                  id="passwordRepeat">

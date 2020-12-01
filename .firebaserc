@@ -2,10 +2,16 @@
   "targets": {
     "fast-939d3": {
       "hosting": {
-        "app": [
+        "angular": [
           "fast-939d3"
+        ],
+        "react": [
+          "fast-react-3f370"
         ]
       }
     }
+  },
+  "projects": {
+    "default": "fast-939d3"
   }
 }
