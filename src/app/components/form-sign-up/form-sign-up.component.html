@@ -15,7 +15,8 @@
                  placeholder="Email"
                  type="text"
                  id="email">
-          <small *ngIf="inputHasError('email')">Email é obrigatório</small>
+          <small *ngIf="formSignUp.get('email')?.errors.required">Email é obrigatório</small>
+          <small *ngIf="formSignUp.get('email')?.errors.pattern">E-mail não é e-mail compasso</small>
         </div>
 
         <div class="form-group">

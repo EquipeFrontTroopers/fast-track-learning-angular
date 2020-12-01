@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {debounceTime, filter} from 'rxjs/operators';
 import {AuthAppService} from '../../core/auth/auth-app.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-form-sign-up',
@@ -23,16 +24,17 @@ export class FormSignUpComponent implements OnInit {
     this.formSignUp = this.formBuilder.group({
       email:
         [
-          '', [Validators.required, Validators.email]
+          '',
+          [
+            Validators.required,
+            Validators.email,
+            Validators.pattern('[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?')
+          ]
         ],
       nickname:
         [
           '', [Validators.required, Validators.minLength(3)]
         ],
-      // name:
-      //   [
-      //     '', [Validators.required, Validators.minLength(3)]
-      //   ],
       password:
         [
           '', [Validators.required, Validators.minLength(8)]
@@ -50,14 +52,6 @@ export class FormSignUpComponent implements OnInit {
         this.formSignUp.get('passwordRepeat').clearValidators();
       }
     });
-
-    this.formSignUp.get('email').valueChanges
-      .pipe(debounceTime(300))
-      .subscribe((value: string) => {
-        if (this.formSignUp.get('email').valid) {
-          // service para validação de email
-        }
-      });
   }
 
   inputHasError(name: string): boolean {

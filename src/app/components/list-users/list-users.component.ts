@@ -22,32 +22,32 @@ export class ListUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.users = [
-      {
-        nickname: '',
-        email: 'wesley.belizario@compasso.com.br',
-        nome: 'Wesley Belizario',
-        id: 1,
-        senha: '',
-        tipoUsuarioId: 0
-      },
-      {
-        nickname: '',
-        email: 'wesley.belizario@compasso.com.br',
-        nome: 'Wesley Belizario',
-        id: 2,
-        senha: '',
-        tipoUsuarioId: 0
-      },
-      {
-        nickname: '',
-        email: 'wesley.belizario@compasso.com.br',
-        nome: 'Wesley Belizario',
-        id: 3,
-        senha: '',
-        tipoUsuarioId: 0
-      }
-    ];
+    // this.users = [
+    //   {
+    //     nickname: '',
+    //     email: 'wesley.belizario@compasso.com.br',
+    //     nome: 'Wesley Belizario',
+    //     id: 1,
+    //     senha: '',
+    //     tipoUsuarioId: 0
+    //   },
+    //   {
+    //     nickname: '',
+    //     email: 'wesley.belizario@compasso.com.br',
+    //     nome: 'Wesley Belizario',
+    //     id: 2,
+    //     senha: '',
+    //     tipoUsuarioId: 0
+    //   },
+    //   {
+    //     nickname: '',
+    //     email: 'wesley.belizario@compasso.com.br',
+    //     nome: 'Wesley Belizario',
+    //     id: 3,
+    //     senha: '',
+    //     tipoUsuarioId: 0
+    //   }
+    // ];
   }
 
   aprovRejectUser(user: User, status: boolean): void {
