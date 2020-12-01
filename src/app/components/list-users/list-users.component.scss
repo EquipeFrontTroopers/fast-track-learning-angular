@@ -36,3 +36,9 @@ $gray: #4B5C6B;
   padding: .75rem;
   border: 1px solid rgb($gray, .4);
 }
+
+.list-users__table--navigation{
+  display: flex;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}

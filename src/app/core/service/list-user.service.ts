@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {AbstractService} from './abstract.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {TypeUser} from '../model/type-user';
-import {User} from '../model/user';
+import { Injectable } from '@angular/core';
+import { AbstractService } from './abstract.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { TypeUser } from '../model/type-user';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +39,14 @@ export class ListUserService extends AbstractService {
   rejectUser(user: User): Observable<any> {
     return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
+
+  listUsersPaginated(page: number) {
+    const params = new HttpParams()
+      .append('_page', page.toString());
+
+    return this.http
+      .get<User[]>(`${this.urlBase}/usuarios`, { params: params });
+  }
+
 
 }

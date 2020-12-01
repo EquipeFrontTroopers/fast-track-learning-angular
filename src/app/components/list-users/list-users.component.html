@@ -18,44 +18,53 @@
   <div class="list-users__table--responsive">
     <table class="list-users__table">
       <thead>
-      <tr>
-        <th>NOME</th>
-        <th>EMAIL</th>
-        <th>PERMISSÃO</th>
-        <th>ACÃO</th>
-      </tr>
+        <tr>
+          <th>NOME</th>
+          <th>EMAIL</th>
+          <th>PERMISSÃO</th>
+          <th>ACÃO</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let u of users">
+        <tr *ngFor="let u of users">
 
-        <td>
-          {{u.nome}}
-        </td>
+          <td>
+            {{u.nome}}
+          </td>
 
-        <td>
-          {{u.email}}
-        </td>
+          <td>
+            {{u.email}}
+          </td>
 
-        <td>
-          PERMISSÃO
-        </td>
+          <td>
+            PERMISSÃO
+          </td>
 
-        <td>
-          <app-button title="Aprovar" (click)="aprovRejectUser(u, true)">
-            <fa-icon [icon]="faCheck"></fa-icon>
-          </app-button>
-          <app-button title="Reprovar" (click)="aprovRejectUser(u, false)">
-            <fa-icon [icon]="faTimes"></fa-icon>
-          </app-button>
-          <app-button title="Editar">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </app-button>
-        </td>
+          <td>
+            <app-button title="Aprovar" (click)="aprovRejectUser(u, true)">
+              <fa-icon [icon]="faCheck"></fa-icon>
+            </app-button>
+            <app-button title="Reprovar" (click)="aprovRejectUser(u, false)">
+              <fa-icon [icon]="faTimes"></fa-icon>
+            </app-button>
+            <app-button title="Editar">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </app-button>
+          </td>
 
-      </tr>
+        </tr>
       </tbody>
     </table>
+    <div class="list-users__table--navigation">
+      <app-button (click)="previousPage()" [disabled]="!hasLess" title="Anterior">
+        <fa-icon [icon]="faChevronLeft"></fa-icon>
+        Anterior
+      </app-button>
+
+      <app-button (click)="nextPage()" [disabled]="!hasMore" title="Próximo">
+        Próximo
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </app-button>
+    </div>
   </div>
-
 </div>
-
