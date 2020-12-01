@@ -37,4 +37,10 @@ section {
         font-size: 30px;
         text-align: center; }
 
+a:hover {
+  color: #003fff; }
+
+button {
+  display: block; }
+
 /*# sourceMappingURL=form-sign-in.component.css.map */

@@ -1,21 +1,26 @@
 {
   "hosting": [
     {
-      "target": "app",
+      "target": "angular",
       "public": "dist/app",
       "ignore": [
-        "**/.*"
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
       ],
-      "headers": [
+      "rewrites": [
         {
-          "source": "*.[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].+(css|js)",
-          "headers": [
-            {
-              "key": "Cache-Control",
-              "value": "public,max-age=31536000,immutable"
-            }
-          ]
+          "source": "**",
+          "destination": "/index.html"
         }
+      ]
+    },{
+      "target": "react",
+      "public": "dist/build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
       ],
       "rewrites": [
         {

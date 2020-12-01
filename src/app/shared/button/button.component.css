@@ -13,4 +13,9 @@ button {
   button:focus {
     outline: none; }
 
+.btn-block {
+  display: block;
+  width: 100%;
+  margin: 0; }
+
 /*# sourceMappingURL=button.component.css.map */
