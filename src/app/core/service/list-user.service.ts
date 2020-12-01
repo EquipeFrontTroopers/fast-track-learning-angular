@@ -33,7 +33,7 @@ export class ListUserService extends AbstractService {
   }
 
   approveUser(user: User): Observable<any> {
-    return this.http.put<any>(`${this.urlBase}/usuarios`, user);
+    return this.http.put<any>(`${this.urlBase}/usuarios/${user.id}`, user);
   }
 
   rejectUser(user: User): Observable<any> {

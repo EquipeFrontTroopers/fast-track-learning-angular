@@ -1,7 +1,7 @@
 @import "./scss/reset";
 @import "./scss/normalize";
 @import "./scss/container";
-@import "./scss/input";
+@import "./scss/form";
 
 $orange: #f7b718;
 
@@ -13,21 +13,6 @@ body, * {
 }
 
 /*** Aguardando  padronização do css, assim que existir, retirar este código ***/
-.form-group {
-  line-break: auto;
-  padding: 5px;
-}
-
-::-webkit-input-placeholder {
-  padding: 5px;
-  color: #e4e4f2;
-}
-
-:-moz-placeholder {
-  padding: 5px;
-  color: #e4e4f2;
-}
-
 .create-access {
   a {
     text-decoration: none;
