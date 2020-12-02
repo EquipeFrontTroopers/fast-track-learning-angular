@@ -41,29 +41,8 @@ export class ListUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot.data['listUsers'])
     this.getTypesAndUsers();
-    this.users = this.activatedRoute.snapshot.data['listUsers'];
     this.initializeListPagination();
-  }
-
-  nextPage() {
-    this.listUserService.listUsersPaginatedAndFiltered(++this.currentPage, this.filter)
-      .subscribe(users => {
-        this.users = users;
-        this.hasLess = true;
-        this.hasMore = this.currentPage < this.totalPages;
-      })
-  }
-
-  previousPage() {
-    if (this.currentPage !== 1)
-      this.listUserService.listUsersPaginatedAndFiltered(--this.currentPage, this.filter)
-        .subscribe(users => {
-          this.users = users;
-          this.hasMore = true;
-          this.hasLess = this.hasLessPages(this.currentPage);
-        })
   }
 
   getTypeUserById(typeUserId: number): TypeUser {
@@ -117,7 +96,33 @@ export class ListUsersComponent implements OnInit {
   }
 
   removeUserFromArray(user: User): void {
-    this.users = this.users.filter(u => u.id !== user.id);
+    this.listUserService.listUsersPaginatedAndFiltered(1, "")
+      .pipe(distinctUntilChanged())
+      .subscribe(users => {
+        this.currentPage = 1;
+        this.hasLess = false;
+        this.users = users;
+      });
+    this.initializeListPagination();
+  }
+
+  nextPage() {
+    this.listUserService.listUsersPaginatedAndFiltered(++this.currentPage, this.filter)
+      .subscribe(users => {
+        this.users = users;
+        this.hasLess = true;
+        this.hasMore = this.currentPage < this.totalPages;
+      })
+  }
+
+  previousPage() {
+    if (this.currentPage !== 1)
+      this.listUserService.listUsersPaginatedAndFiltered(--this.currentPage, this.filter)
+        .subscribe(users => {
+          this.users = users;
+          this.hasMore = true;
+          this.hasLess = this.hasLessPages(this.currentPage);
+        })
   }
 
   initializeListPagination() {
@@ -155,13 +160,9 @@ export class ListUsersComponent implements OnInit {
   }
 
   getTypesAndUsers(): void {
-    forkJoin([
-      this.listUserService.getAll(),
-      this.listUserService.getAllTypeUsers()
-    ]).subscribe(([users, types]) => {
-      this.users = users;
-      this.typesUser = types;
-    });
+    this.users = this.activatedRoute.snapshot.data['listUsers'];
+    this.listUserService.getAllTypeUsers()
+      .subscribe(types => { this.typesUser = types });
   }
 
   addUserAlert(): void {

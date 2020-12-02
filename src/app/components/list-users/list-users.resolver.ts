@@ -8,7 +8,6 @@ import { ListUserService } from '../../core/service/list-user.service';
 export class ListUserResolver implements Resolve<Observable<User[]>> {
   constructor(private service: ListUserService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const userName = route.params.userName;
     return this.service.listUsersPaginatedAndFiltered(1, "");
   }
 }
