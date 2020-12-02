@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {AbstractService} from './abstract.service';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {TypeUser} from '../model/type-user';
-import {User} from '../model/user';
+import { Injectable } from '@angular/core';
+import { AbstractService } from './abstract.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { TypeUser } from '../model/type-user';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +32,34 @@ export class ListUserService extends AbstractService {
     return this.http.get<User[]>(`${this.urlBase}/usuarios`);
   }
 
+  getAllUsersFiltered(filter: string): Observable<User[]> {
+    const params = new HttpParams()
+      .append('nome_like', filter);
+    return this.http
+      .get<User[]>(`${this.urlBase}/usuarios`, { params: params });
+  }
+
   approve(user: User): Observable<any> {
+    user.acessoAprovado = true;
     return this.http.put<any>(`${this.urlBase}/usuarios/${user.id}`, user);
+  }
+
+  delete(user: User): Observable<any> {
+    return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
 
   reject(user: User): Observable<any> {
     return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
+
+  listUsersPaginatedAndFiltered(page: number, filter: string) {
+    const params = new HttpParams()
+      .append('_page', page.toString())
+      .append('nome_like', filter);
+
+    return this.http
+      .get<User[]>(`${this.urlBase}/usuarios`, { params: params });
+  }
+
 
 }

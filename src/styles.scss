@@ -1,5 +1,5 @@
 @import "./scss/reset";
-@import "./scss/normalize";
+@import "./scss/normalize.scss";
 @import "./scss/container";
 @import "./scss/form";
 
@@ -16,6 +16,21 @@ body, * {
 @keyframes moveBody {
   0%    {opacity: 0;}
   100%  {opacity: 1;}
+}
+
+.form-group {
+  line-break: auto;
+  padding: 5px;
+}
+
+::-webkit-input-placeholder {
+  padding: 5px;
+  color: #e4e4f2;
+}
+
+:-moz-placeholder {
+  padding: 5px;
+  color: #e4e4f2;
 }
 
 .create-access {

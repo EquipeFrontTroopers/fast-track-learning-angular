@@ -1,10 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {faCheck, faTimes, faEdit, faPlusCircle, faFilter} from '@fortawesome/free-solid-svg-icons';
+
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, forkJoin } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import {ListUserService} from '../../core/service/list-user.service';
-import {forkJoin} from 'rxjs';
-import {User} from '../../core/model/user';
-import {TypeUser} from '../../core/model/type-user';
+import { faCheck, faTimes, faEdit, faPlusCircle, faFilter, faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
+
+import { User } from '../../core/model/user';
+import { ListUserService } from '../../core/service/list-user.service';
+import { TypeUser } from '../../core/model/type-user';
 
 @Component({
   selector: 'app-list-users',
@@ -12,31 +16,185 @@ import {TypeUser} from '../../core/model/type-user';
   styleUrls: ['./list-users.component.scss']
 })
 export class ListUsersComponent implements OnInit {
-
+  LIST_PAGE_LIMIT = 10;
   faCheck = faCheck;
   faTimes = faTimes;
   faEdit = faEdit;
+  faTrash = faTrash;
   faPlusCircle = faPlusCircle;
   faFilter = faFilter;
+  faChevronLeft = faChevronLeft;
+  faChevronRight = faChevronRight;
 
-  users: User[] = [];
+  users: User[];
   typesUser: TypeUser[] = [];
+  filter: string = "";
+  currentPage = 1;
+  totalPages = 1;
+  hasMore: boolean = false;
+  hasLess: boolean = false;
+  debounce: Subject<string> = new Subject<string>();
 
-  constructor(private listUserService: ListUserService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private listUserService: ListUserService
+  ) {
   }
 
   ngOnInit(): void {
     this.getTypesAndUsers();
+    this.initializeListPagination();
+  }
+
+  getTypeUserById(typeUserId: number): TypeUser {
+    return this.typesUser.find(t => t.id === typeUserId);
+  }
+
+  approveUserAlert(user: User): void {
+    Swal
+      .fire({
+        title: `Aprovar acesso`,
+        html: `Aprovar acesso do usuário ${user.nome}?`,
+        icon: 'info',
+        confirmButtonColor: 'orange',
+        confirmButtonText: 'Sim',
+        showDenyButton: true,
+        denyButtonText: 'Não'
+      })
+      .then(value => {
+        if (value.isConfirmed) {
+          this.approveUser(user);
+        } else if (value.isDenied) {
+          this.reproveUser(user);
+        }
+      });
+  }
+
+  removeUserAlert(user: User): void {
+    Swal
+      .fire({
+        title: `Atenção`,
+        html: `Deseja realmente remover o usuário ${user.nome}?`,
+        icon: 'warning',
+        confirmButtonColor: 'orange',
+        confirmButtonText: 'Sim',
+        showDenyButton: true,
+        denyButtonText: 'Não'
+      })
+      .then(value => {
+        if (value.isConfirmed) {
+          this.deleteUser(user);
+        }
+      });
+  }
+
+  approveUser(user: User): void {
+    this.listUserService
+      .approve(user)
+      .subscribe(
+        () => {
+          Swal
+            .fire('Sucesso', `${user.nome} aprovado`, 'success')
+            .then(() => this.refreshList());
+        },
+        () => Swal.fire('Ops...', `Erro interno`, 'error')
+      );
+  }
+
+  reproveUser(user: User): void {
+    this.listUserService
+      .reject(user)
+      .subscribe(
+        () => {
+          Swal
+            .fire('Sucesso', `${user.nome} reprovado`, 'success')
+            .then(() => this.refreshList());
+        },
+        () => Swal.fire('Ops...', `Erro interno`, 'error')
+      );
+  }
+
+  deleteUser(user: User): void {
+    this.listUserService
+      .delete(user)
+      .subscribe(
+        () => {
+          Swal
+            .fire('Sucesso', `${user.nome} foi removido`, 'success')
+            .then(() => this.refreshList());
+        },
+        () => Swal.fire('Ops...', `Erro interno`, 'error')
+      );
+  }
+
+  refreshList(): void {
+    this.listUserService.listUsersPaginatedAndFiltered(1, "")
+      .pipe(distinctUntilChanged())
+      .subscribe(users => {
+        this.currentPage = 1;
+        this.hasLess = false;
+        this.users = users;
+      });
+    this.initializeListPagination();
+  }
+
+  nextPage() {
+    this.listUserService.listUsersPaginatedAndFiltered(++this.currentPage, this.filter)
+      .subscribe(users => {
+        this.users = users;
+        this.hasLess = true;
+        this.hasMore = this.currentPage < this.totalPages;
+      })
+  }
+
+  previousPage() {
+    if (this.currentPage !== 1)
+      this.listUserService.listUsersPaginatedAndFiltered(--this.currentPage, this.filter)
+        .subscribe(users => {
+          this.users = users;
+          this.hasMore = true;
+          this.hasLess = this.hasLessPages(this.currentPage);
+        })
+  }
+
+  initializeListPagination() {
+    this.listUserService.getAll()
+      .subscribe(users => {
+        const totalUsuarios = users.length;
+        this.initializePagination(totalUsuarios);
+      })
+  }
+
+  initializeFilterPagination(filterValue: string) {
+    this.listUserService.getAllUsersFiltered(filterValue)
+      .subscribe(users => {
+        const totalUsuarios = users.length;
+        this.initializePagination(totalUsuarios);
+      })
+  }
+
+  initializePagination(totalUsers: number) {
+    this.hasMore = this.hasMorePages(totalUsers);
+    this.totalPages = this.getTotalPages(totalUsers);
+  }
+
+  filterUsers(event: any) {
+    this.filter = event.target.value;
+    this.listUserService.listUsersPaginatedAndFiltered(1, this.filter)
+      .pipe(distinctUntilChanged())
+      .subscribe(users => {
+        this.currentPage = 1;
+        this.hasLess = false;
+        this.users = users;
+      });
+
+    this.initializeFilterPagination(this.filter);
   }
 
   getTypesAndUsers(): void {
-    forkJoin([
-      this.listUserService.getAll(),
-      this.listUserService.getAllTypeUsers()
-    ]).subscribe(([users, types]) => {
-      this.users = users;
-      this.typesUser = types;
-    });
+    this.users = this.activatedRoute.snapshot.data['listUsers'];
+    this.listUserService.getAllTypeUsers()
+      .subscribe(types => { this.typesUser = types });
   }
 
   addUserAlert(): void {
@@ -63,8 +221,8 @@ export class ListUsersComponent implements OnInit {
               .save(userSave)
               .subscribe(
                 () => {
-                  this.getTypesAndUsers();
                   Swal.fire('Sucesso', `${userSave.nome} atualizado`, 'success').then();
+                  this.refreshList();
                 },
                 () => Swal.fire('Ops...', `Erro interno`, 'error').then()
               );
@@ -164,58 +322,16 @@ export class ListUsersComponent implements OnInit {
     };
   }
 
-  getTypeUserById(typeUserId: number): TypeUser {
-    return this.typesUser.find(t => t.id === typeUserId);
+  getTotalPages(totalUsers: number) {
+    return Math.ceil(totalUsers / this.LIST_PAGE_LIMIT);
   }
 
-  approveUserAlert(user: User): void {
-    Swal
-      .fire({
-        title: `Aprovar acesso`,
-        html: `Aprovar acesso do usuário ${user.nome}?`,
-        icon: 'info',
-        confirmButtonColor: 'orange',
-        confirmButtonText: 'Sim',
-        showDenyButton: true,
-        denyButtonText: 'Não'
-      })
-      .then(value => {
-        if (value.isConfirmed) {
-          this.approveUser(user);
-        } else if (value.isDenied) {
-          this.reproveUser(user);
-        }
-      });
+  hasMorePages(totalUsers: number) {
+    return totalUsers > 10 ? true : false;
   }
 
-  approveUser(user: User): void {
-    this.listUserService
-      .approve(user)
-      .subscribe(
-        () => {
-          Swal
-            .fire('Sucesso', `${user.nome} aprovado`, 'success')
-            .then(() => this.removeUserFromArray(user));
-        },
-        () => Swal.fire('Ops...', `Erro interno`, 'error')
-      );
-  }
-
-  reproveUser(user: User): void {
-    this.listUserService
-      .reject(user)
-      .subscribe(
-        () => {
-          Swal
-            .fire('Sucesso', `${user.nome} reprovado`, 'success')
-            .then(() => this.removeUserFromArray(user));
-        },
-        () => Swal.fire('Ops...', `Erro interno`, 'error')
-      );
-  }
-
-  removeUserFromArray(user: User): void {
-    this.users = this.users.filter(u => u.id !== user.id);
+  hasLessPages(page: number) {
+    return page === 1 ? false : true;
   }
 
 }
