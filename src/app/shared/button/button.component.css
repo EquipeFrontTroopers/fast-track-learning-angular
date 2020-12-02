@@ -12,6 +12,9 @@ button {
     background: #f5ae16; }
   button:focus {
     outline: none; }
+  button:disabled {
+    background-color: #ffd56a;
+    cursor: default; }
 
 .btn-block {
   display: block;
