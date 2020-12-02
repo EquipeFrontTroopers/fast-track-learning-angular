@@ -13,11 +13,10 @@ const routes: Routes = [
 
   {
     path: '',
-    // resolve: {user: UserResolver},
     canActivate: [AuthRequiredGuard],
     children: [
       {path: '', redirectTo: 'select-action', pathMatch: 'full'},
-      {path: 'select-action', component: SelectActionComponent, data: {title: 'Selecionar Ação'}},
+      {path: 'select-action', component: SelectActionComponent, data: {title: 'Selecionar Ação'}, resolve: {user: UserResolver}},
       {path: 'list-users', component: ListUsersComponent, data: {title: 'Listar usuários'}},
     ]
   },

@@ -1,0 +1,13 @@
+.main-footer {
+  background-color: #ffa500;
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0; }
+
+/*# sourceMappingURL=footer.component.css.map */
