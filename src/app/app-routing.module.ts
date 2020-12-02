@@ -4,9 +4,9 @@ import {NotFoundComponent} from './errors/not-found/not-found.component';
 import {FormSignUpComponent} from './components/form-sign-up/form-sign-up.component';
 import {FormSignInComponent} from './components/form-sign-in/form-sign-in.component';
 import {SelectActionComponent} from './components/select-action/select-action.component';
-import {AuthResolver} from './core/auth/auth.resolver';
+import {AuthResolver} from './core/resolver/auth.resolver';
 import {AuthRequiredGuard} from './core/auth/auth-required.guard';
-import {UserResolver} from './core/user/user.resolver';
+import {UserResolver} from './core/resolver/user.resolver';
 import {ListUsersComponent} from './components/list-users/list-users.component';
 
 const routes: Routes = [

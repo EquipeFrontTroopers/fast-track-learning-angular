@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
-import {AuthAppService} from '../../core/auth/auth-app.service';
-import {UserService} from '../../core/user/user.service';
+import {AuthAppService} from '../../core/service/auth-app.service';
+import {UserService} from '../../core/service/user.service';
 
 @Component({
   selector: 'app-header',
