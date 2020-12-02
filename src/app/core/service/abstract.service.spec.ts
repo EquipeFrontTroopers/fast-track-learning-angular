@@ -1,16 +1,20 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
+import {AbstractService} from './abstract.service';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
-import { AbstractService } from './abstract.service';
+describe('O serviço AbstractService', () => {
 
-describe('AbstractService', () => {
   let service: AbstractService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
     service = TestBed.inject(AbstractService);
   });
 
-  it('should be created', () => {
+  it('deve ser instânciado', () => {
     expect(service).toBeTruthy();
   });
+
 });

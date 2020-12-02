@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import {AuthAppService} from '../../core/service/auth-app.service';
+import {UserService} from '../../core/service/user.service';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {User} from '../../core/model/user';
-import {AuthAppService} from '../../core/auth/auth-app.service';
-import {UserService} from '../../core/user/user.service';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -14,14 +14,14 @@ import {Observable} from 'rxjs';
 export class HeaderComponent implements OnInit {
 
   faSignOutAlt = faSignOutAlt;
-  user: any;
+  user = new BehaviorSubject<User>(null);
 
   constructor(public authAppService: AuthAppService,
               private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe(user => this.user = user);
+    this.userService.getUser().subscribe(user => this.user.next(user[0]));
   }
 
   isLogged(): boolean {

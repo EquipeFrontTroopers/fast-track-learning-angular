@@ -24,11 +24,11 @@ export class ListUserService extends AbstractService {
     return this.http.put<any>(`${this.urlBase}/usuarios/${user.id}`, user);
   }
 
-  getTypeUsers(): Observable<TypeUser[]> {
+  getAllTypeUsers(): Observable<TypeUser[]> {
     return this.http.get<TypeUser[]>(`${this.urlBase}/tipoUsuarios `);
   }
 
-  getAllUsers(): Observable<User[]> {
+  getAll(): Observable<User[]> {
     return this.http.get<User[]>(`${this.urlBase}/usuarios`);
   }
 
@@ -39,11 +39,11 @@ export class ListUserService extends AbstractService {
       .get<User[]>(`${this.urlBase}/usuarios`, { params: params });
   }
 
-  approveUser(user: User): Observable<any> {
-    return this.http.put<any>(`${this.urlBase}/usuarios`, user);
+  approve(user: User): Observable<any> {
+    return this.http.put<any>(`${this.urlBase}/usuarios/${user.id}`, user);
   }
 
-  rejectUser(user: User): Observable<any> {
+  reject(user: User): Observable<any> {
     return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
 

@@ -9,6 +9,7 @@ import {RouterModule} from '@angular/router';
 import { ListUsersComponent } from './list-users/list-users.component';
 import {SharedModule} from '../shared/shared.module';
 import {FormSignInComponent} from './form-sign-in/form-sign-in.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,14 @@ import {FormSignInComponent} from './form-sign-in/form-sign-in.component';
     HeaderComponent,
     SelectActionComponent,
     ListUsersComponent,
-    FormSignInComponent
+    FormSignInComponent,
+    FooterComponent
   ],
-  exports: [
-    HeaderComponent,
-    SelectActionComponent
-  ],
+    exports: [
+        HeaderComponent,
+        SelectActionComponent,
+        FooterComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

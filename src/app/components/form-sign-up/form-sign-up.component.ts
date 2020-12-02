@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {debounceTime, filter} from 'rxjs/operators';
-import {AuthAppService} from '../../core/auth/auth-app.service';
+import {AuthAppService} from '../../core/service/auth-app.service';
 
 @Component({
   selector: 'app-form-sign-up',

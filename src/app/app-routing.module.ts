@@ -4,9 +4,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { FormSignUpComponent } from './components/form-sign-up/form-sign-up.component';
 import { FormSignInComponent } from './components/form-sign-in/form-sign-in.component';
 import { SelectActionComponent } from './components/select-action/select-action.component';
-import { AuthResolver } from './core/auth/auth.resolver';
 import { AuthRequiredGuard } from './core/auth/auth-required.guard';
-import { UserResolver } from './core/user/user.resolver';
 import { ListUserResolver } from './components/list-users/list-users.resolver';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 
@@ -14,7 +12,6 @@ const routes: Routes = [
 
   {
     path: '',
-    // resolve: {user: UserResolver},
     canActivate: [AuthRequiredGuard],
     children: [
       { path: '', redirectTo: 'select-action', pathMatch: 'full' },

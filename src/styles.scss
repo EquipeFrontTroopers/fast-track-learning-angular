@@ -1,7 +1,7 @@
 @import "./scss/reset";
 @import "./scss/normalize.scss";
 @import "./scss/container";
-@import "./scss/input";
+@import "./scss/form";
 
 $orange: #f7b718;
 
@@ -10,10 +10,9 @@ body, * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  animation: moveBody 1s;
 }
-body{
-  animation: moveBody 3s;
-}
+
 @keyframes moveBody {
   0%    {opacity: 0;}
   100%  {opacity: 1;}

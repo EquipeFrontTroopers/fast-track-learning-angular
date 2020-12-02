@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
-import {UserService} from '../user/user.service';
-import {TokenService} from './token/token.service';
+import {UserService} from './user.service';
+import {TokenService} from './token.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import Swal from 'sweetalert2';
 import {environment} from '../../../environments/environment';
@@ -74,7 +74,7 @@ export class AuthAppService{
     );
   }
 
-  SignUp(email: string, password: string, nickName: string){
+  SignUp(email: string, password: string, nickName: string): Promise<any>{
 
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -84,11 +84,11 @@ export class AuthAppService{
         const newData = {
           nickname: nickName,
           email: user.email,
-          tipoUsuarioId: 1,
+          tipoUsuarioId: 2,
           acessoAprovado: false
         };
 
-        this.http.post(API + 'usuarios', newData).subscribe();
+        this.http.post(API + '/usuarios', newData).subscribe();
 
         Swal.fire({
           title: 'Sucesso',
