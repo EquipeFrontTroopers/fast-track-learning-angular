@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 
-import {AuthAppService} from '../../core/auth/auth-app.service';
+import {AuthAppService} from '../../core/service/auth-app.service';
 
 @Component({
   selector: 'app-form-sign-in',

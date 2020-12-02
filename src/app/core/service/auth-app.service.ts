@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
-import {UserService} from '../user/user.service';
-import {TokenService} from './token/token.service';
+import {UserService} from './user.service';
+import {TokenService} from './token.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import Swal from 'sweetalert2';
 import {environment} from '../../../environments/environment';

@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  ApiUrl: 'http://18.225.7.114:8050/',
+  ApiUrl: 'http://18.225.7.114:8050',
   firebase: {
     apiKey: 'AIzaSyBdeyMkeS1hEjXjToRRV4mNhUXa75T_-aE',
     authDomain: 'fast-939d3.firebaseapp.com',

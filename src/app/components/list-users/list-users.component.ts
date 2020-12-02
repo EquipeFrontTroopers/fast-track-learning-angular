@@ -103,7 +103,6 @@ export class ListUsersComponent implements OnInit {
     return !(
       !user.nome
       || !user.email
-      || !user.email.match('[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?')
       || !user.tipoUsuarioId
       || !user.nickname
     );
