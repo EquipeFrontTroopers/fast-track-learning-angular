@@ -25,5 +25,9 @@ export class UserService {
   getUser(): Observable<any> {
     return this.userSubject.asObservable();
   }
+  setDataUser( data ): void{
+    // this.http.post
+    // this.userSubject.next(data);
+  }
 
 }

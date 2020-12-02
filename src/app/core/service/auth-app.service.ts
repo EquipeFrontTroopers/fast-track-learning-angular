@@ -74,7 +74,7 @@ export class AuthAppService{
     );
   }
 
-  SignUp(email: string, password: string, nickName: string){
+  SignUp(email: string, password: string, nickName: string): Promise<any>{
 
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
