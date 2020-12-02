@@ -1,5 +1,5 @@
 @import "./scss/reset";
-@import "./scss/normalize";
+@import "./scss/normalize.scss";
 @import "./scss/container";
 @import "./scss/input";
 
@@ -18,14 +18,7 @@ body{
   0%    {opacity: 0;}
   100%  {opacity: 1;}
 }
-@font-face {
-  font-family: 'Mark Pro';
-  src: url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.eot'); /* IE9 Compat Modes */
-  src: url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.woff') format('woff'), /* Modern Browsers */
-  url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.woff') format('woff2'), /* Modern Browsers */
-  url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.ttf') format('truetype'), /* Safari, Android, iOS */
-  url('./assets/font/mark-pro/7200c6dd8ac604abe09f5159e53a40c0.svg') format('svg'); /* Legacy iOS */
-}
+
 .form-group {
   line-break: auto;
   padding: 5px;

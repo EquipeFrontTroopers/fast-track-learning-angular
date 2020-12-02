@@ -32,6 +32,13 @@ export class ListUserService extends AbstractService {
     return this.http.get<User[]>(`${this.urlBase}/usuarios`);
   }
 
+  getAllUsersFiltered(filter: string): Observable<User[]> {
+    const params = new HttpParams()
+      .append('nome_like', filter);
+    return this.http
+      .get<User[]>(`${this.urlBase}/usuarios`, { params: params });
+  }
+
   approveUser(user: User): Observable<any> {
     return this.http.put<any>(`${this.urlBase}/usuarios`, user);
   }
@@ -40,9 +47,10 @@ export class ListUserService extends AbstractService {
     return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
 
-  listUsersPaginated(page: number) {
+  listUsersPaginatedAndFiltered(page: number, filter: string) {
     const params = new HttpParams()
-      .append('_page', page.toString());
+      .append('_page', page.toString())
+      .append('nome_like', filter);
 
     return this.http
       .get<User[]>(`${this.urlBase}/usuarios`, { params: params });

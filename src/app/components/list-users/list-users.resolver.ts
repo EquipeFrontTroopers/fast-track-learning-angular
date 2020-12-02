@@ -9,6 +9,6 @@ export class ListUserResolver implements Resolve<Observable<User[]>> {
   constructor(private service: ListUserService) { }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const userName = route.params.userName;
-    return this.service.listUsersPaginated(1);
+    return this.service.listUsersPaginatedAndFiltered(1, "");
   }
 }

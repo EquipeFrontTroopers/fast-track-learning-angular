@@ -5,16 +5,17 @@
   </div>
 
   <div class="list-users__buttons">
-    <app-button title="Filtrar">
-      <fa-icon [icon]="faFilter"></fa-icon>
-      Filtrar
-    </app-button>
+    <input type="text" (keyup)="filterUsers($event)" [value]="filter"
+      placeholder="Pesquisar nome do usuário">
+
     <app-button title="Adicionar usuário">
       <fa-icon [icon]="faPlusCircle"></fa-icon>
       Adicionar usuário
     </app-button>
   </div>
-
+  <div class="list-users__pages--info">
+    <p>Página {{currentPage}} de {{totalPages}}</p>
+  </div>
   <div class="list-users__table--responsive">
     <table class="list-users__table">
       <thead>

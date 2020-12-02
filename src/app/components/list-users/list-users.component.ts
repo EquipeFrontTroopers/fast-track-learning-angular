@@ -4,6 +4,8 @@ import { User } from '../../core/model/user';
 import { faCheck, faTimes, faEdit, faPlusCircle, faFilter, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-users',
@@ -11,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./list-users.component.scss']
 })
 export class ListUsersComponent implements OnInit {
-
+  LIST_PAGE_LIMIT = 10;
   faCheck = faCheck;
   faTimes = faTimes;
   faEdit = faEdit;
@@ -21,9 +23,12 @@ export class ListUsersComponent implements OnInit {
   faChevronRight = faChevronRight;
 
   users: User[];
+  filter: string = "";
   currentPage = 1;
+  totalPages = 1;
   hasMore: boolean = false;
   hasLess: boolean = false;
+  debounce: Subject<string> = new Subject<string>();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,26 +39,26 @@ export class ListUsersComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.activatedRoute.snapshot.data['listUsers'])
     this.users = this.activatedRoute.snapshot.data['listUsers'];
-    this.disableNextPageButton();
+    this.initializeListPagination();
   }
 
   nextPage() {
-    this.listUserService.listUsersPaginated(++this.currentPage)
+    this.listUserService.listUsersPaginatedAndFiltered(++this.currentPage, this.filter)
       .subscribe(users => {
         this.users = users;
         this.hasLess = true;
-        if (users.length < 10) this.hasMore = false;
-
+        this.hasMore = this.currentPage < this.totalPages;
       })
   }
 
   previousPage() {
-    this.listUserService.listUsersPaginated(--this.currentPage)
-      .subscribe(users => {
-        this.users = users;
-        this.hasMore = true;
-        if (this.currentPage === 1) this.hasLess = false;
-      })
+    if (this.currentPage !== 1)
+      this.listUserService.listUsersPaginatedAndFiltered(--this.currentPage, this.filter)
+        .subscribe(users => {
+          this.users = users;
+          this.hasMore = true;
+          this.hasLess = this.hasLessPages(this.currentPage);
+        })
   }
 
   aprovRejectUser(user: User, status: boolean): void {
@@ -69,11 +74,50 @@ export class ListUsersComponent implements OnInit {
       .then();
   }
 
-  disableNextPageButton() {
+  initializeListPagination() {
     this.listUserService.getAllUsers()
       .subscribe(users => {
-        this.hasMore = users.length > 10 ? true : false;
+        const totalUsuarios = users.length;
+        this.initializePagination(totalUsuarios);
       })
+  }
+
+  initializeFilterPagination(filterValue: string) {
+    this.listUserService.getAllUsersFiltered(filterValue)
+      .subscribe(users => {
+        const totalUsuarios = users.length;
+        this.initializePagination(totalUsuarios);
+      })
+  }
+
+  initializePagination(totalUsers: number) {
+    this.hasMore = this.hasMorePages(totalUsers);
+    this.totalPages = this.getTotalPages(totalUsers);
+  }
+
+  filterUsers(event: any) {
+    this.filter = event.target.value;
+    this.listUserService.listUsersPaginatedAndFiltered(1, this.filter)
+      .pipe(distinctUntilChanged())
+      .subscribe(users => {
+        this.currentPage = 1;
+        this.hasLess = false;
+        this.users = users;
+      });
+
+    this.initializeFilterPagination(this.filter);
+  }
+
+  getTotalPages(totalUsers: number) {
+    return Math.ceil(totalUsers / this.LIST_PAGE_LIMIT);
+  }
+
+  hasMorePages(totalUsers: number) {
+    return totalUsers > 10 ? true : false;
+  }
+
+  hasLessPages(page: number) {
+    return page === 1 ? false : true;
   }
 
 }

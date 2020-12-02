@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
-import {AuthAppService} from '../../core/auth/auth-app.service';
+import { AuthAppService } from '../../core/auth/auth-app.service';
 
 @Component({
   selector: 'app-form-sign-in',
@@ -15,7 +15,7 @@ export class FormSignInComponent implements OnInit {
   constructor(
     private authAppService: AuthAppService,
     private formBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.formSignIn = this.formBuilder.group({
@@ -38,13 +38,13 @@ export class FormSignInComponent implements OnInit {
     });
   }
 
-  login(): void{
+  login(): void {
     const email = this.formSignIn.get('email').value;
     const password = this.formSignIn.get('password').value;
     const remember = this.formSignIn.get('remember').value;
     const newPassword = this.formSignIn.get('new_password').value;
 
-    if ( remember ){
+    if (remember) {
       // this.authAppService.sendMaiRemember(email, newPassword);
       Swal.fire({
         html: 'Se o E-mail informado for válido, enviaremos um link de confirmação para ' + email,
@@ -52,18 +52,18 @@ export class FormSignInComponent implements OnInit {
         cancelButtonText: 'Enviar'
       });
 
-    }else {
+    } else {
 
-      if (this.formSignIn.valid && !this.formSignIn.pending) {
-        this.authAppService.login(email, password).then();
-      } else if (this.formSignIn.get('email').errors && this.formSignIn.get('email').errors.pattern) {
-        Swal.fire({
-          title: 'Erro',
-          html: 'O E-mail informado não é um e-mail compasso válido!',
-          icon: 'warning',
-          cancelButtonText: 'Ok'
-        });
-      }
+      this.authAppService.login(email, password).then();
+      // if (this.formSignIn.valid && !this.formSignIn.pending) {
+      // } else if (this.formSignIn.get('email').errors && this.formSignIn.get('email').errors.pattern) {
+      //   Swal.fire({
+      //     title: 'Erro',
+      //     html: 'O E-mail informado não é um e-mail compasso válido!',
+      //     icon: 'warning',
+      //     cancelButtonText: 'Ok'
+      //   });
+      // }
     }
   }
 }
