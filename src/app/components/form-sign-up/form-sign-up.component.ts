@@ -27,8 +27,7 @@ export class FormSignUpComponent implements OnInit {
           '',
           [
             Validators.required,
-            Validators.email,
-            Validators.pattern('[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?')
+            Validators.email
           ]
         ],
       nickname:

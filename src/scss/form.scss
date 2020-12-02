@@ -5,6 +5,21 @@ input:not([type='checkbox']) {
   height: 29px;
 }
 
+.form-group {
+  line-break: auto;
+  padding: 5px;
+}
+
+::-webkit-input-placeholder {
+  padding: 5px;
+  color: #e4e4f2;
+}
+
+:-moz-placeholder {
+  padding: 5px;
+  color: #e4e4f2;
+}
+
 .form-content-item {
   width: 100%;
   padding: 12px 20px;
