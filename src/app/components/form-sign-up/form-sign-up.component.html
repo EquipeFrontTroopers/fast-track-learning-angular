@@ -10,44 +10,38 @@
         <h1>FAST TRACK LEARNING</h1>
         <div class="form-group">
           <label for="email"></label>
-          <input class="form-content-item"
-                 formControlName="email"
-                 placeholder="Email"
-                 type="text"
-                 id="email">
+          <input class="form-content-item" formControlName="email" placeholder="Email"
+            type="text" id="email">
           <small *ngIf="inputHasError('email')">Email é obrigatório</small>
         </div>
 
         <div class="form-group">
-          <input formControlName="nickname"
-                 placeholder="Apelido"
-                 type="text"
-                 id="nickname">
+          <input formControlName="name" placeholder="Nome" type="text"
+            class="form-content-item" id="name">
+          <small *ngIf="inputHasError('name')">Nickname é obrigatório</small>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="nickname" placeholder="Apelido" type="text"
+            class="form-content-item" id="nickname">
           <small *ngIf="inputHasError('nickname')">Nickname é obrigatório</small>
         </div>
 
         <div class="form-group">
           <label for="password"></label>
-          <input formControlName="password"
-                 placeholder="Senha"
-                 class="form-content-item"
-                 type="password"
-                 id="password">
+          <input formControlName="password" placeholder="Senha" class="form-content-item"
+            type="password" id="password">
           <small *ngIf="inputHasError('password')">Senha é obrigatório</small>
         </div>
 
         <div class="form-group">
           <label for="passwordRepeat"></label>
-          <input formControlName="passwordRepeat"
-                 class="form-content-item"
-                 placeholder="Repita a senha"
-                 type="password"
-                 id="passwordRepeat">
+          <input formControlName="passwordRepeat" class="form-content-item"
+            placeholder="Repita a senha" type="password" id="passwordRepeat">
           <small *ngIf="inputHasError('passwordRepeat')">Senhas não correspondem</small>
         </div>
-        <app-button [disabled]="this.formSignUp.invalid"
-                    [btnBlock]="true"
-                    (click)="submit()">
+        <app-button [disabled]="this.formSignUp.invalid" [btnBlock]="true"
+          (click)="submit()">
           Cadastrar
         </app-button>
         <div class="form-group p-10">
@@ -57,4 +51,3 @@
     </div>
   </div>
 </section>
-

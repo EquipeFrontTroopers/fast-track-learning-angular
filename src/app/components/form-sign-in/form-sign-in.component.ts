@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/core/service/user.service';
 import Swal from 'sweetalert2';
 
 import { AuthAppService } from '../../core/service/auth-app.service';
@@ -14,6 +15,7 @@ export class FormSignInComponent implements OnInit {
 
   constructor(
     private authAppService: AuthAppService,
+    private userService: UserService,
     private formBuilder: FormBuilder
   ) { }
 
@@ -43,28 +45,35 @@ export class FormSignInComponent implements OnInit {
     const password = this.formSignIn.get('password').value;
     const remember = this.formSignIn.get('remember').value;
     const newPassword = this.formSignIn.get('new_password').value;
-
-    if (remember) {
-      // this.authAppService.sendMaiRemember(email, newPassword);
-      Swal.fire({
-        html: 'Se o E-mail informado for válido, enviaremos um link de confirmação para ' + email,
-        icon: 'success',
-        cancelButtonText: 'Enviar'
+    this.userService.getUserByEmail(email)
+      .subscribe(user => {
+        if (remember) {
+          Swal.fire({
+            html: 'Se o E-mail informado for válido, enviaremos um link de confirmação para ' + email,
+            icon: 'success',
+            cancelButtonText: 'Enviar'
+          });
+        } else {
+          if (this.formSignIn.valid && !this.formSignIn.pending) {
+            if (user[0].acessoAprovado) {
+              this.authAppService.login(email, password).then();
+            } else {
+              Swal.fire({
+                html: 'O seu acesso ainda não foi liberado pelo Gestor',
+                icon: 'info',
+                cancelButtonText: 'Fechar'
+              });
+            }
+          }
+          // else if (this.formSignIn.get('email').errors && this.formSignIn.get('email').errors.pattern) {
+          //   Swal.fire({
+          //     title: 'Erro',
+          //     html: 'O E-mail informado não é um e-mail compasso válido!',
+          //     icon: 'warning',
+          //     cancelButtonText: 'Ok'
+          //   });
+          // }
+        }
       });
-
-    } else {
-
-      if (this.formSignIn.valid && !this.formSignIn.pending) {
-        this.authAppService.login(email, password).then();
-      }
-      // else if (this.formSignIn.get('email').errors && this.formSignIn.get('email').errors.pattern) {
-      //   Swal.fire({
-      //     title: 'Erro',
-      //     html: 'O E-mail informado não é um e-mail compasso válido!',
-      //     icon: 'warning',
-      //     cancelButtonText: 'Ok'
-      //   });
-      // }
-    }
   }
 }
