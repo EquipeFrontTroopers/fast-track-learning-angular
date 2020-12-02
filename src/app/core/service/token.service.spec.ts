@@ -5,7 +5,7 @@ describe('O serviço TokenService', () => {
   let token, service;
 
   it('Deve ser instanciado', () => {
-    const service = new TokenService();
+    service = new TokenService();
     expect(service).toBeTruthy();
   });
 
