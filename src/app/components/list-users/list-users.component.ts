@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject, forkJoin } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import { faCheck, faTimes, faEdit, faPlusCircle, faFilter, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes, faEdit, faPlusCircle, faFilter, faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { User } from '../../core/model/user';
 import { ListUserService } from '../../core/service/list-user.service';
@@ -20,6 +20,7 @@ export class ListUsersComponent implements OnInit {
   faCheck = faCheck;
   faTimes = faTimes;
   faEdit = faEdit;
+  faTrash = faTrash;
   faPlusCircle = faPlusCircle;
   faFilter = faFilter;
   faChevronLeft = faChevronLeft;
@@ -69,6 +70,24 @@ export class ListUsersComponent implements OnInit {
       });
   }
 
+  removeUserAlert(user: User): void {
+    Swal
+      .fire({
+        title: `Atenção`,
+        html: `Deseja realmente remover o usuário ${user.nome}?`,
+        icon: 'warning',
+        confirmButtonColor: 'orange',
+        confirmButtonText: 'Sim',
+        showDenyButton: true,
+        denyButtonText: 'Não'
+      })
+      .then(value => {
+        if (value.isConfirmed) {
+          this.deleteUser(user);
+        }
+      });
+  }
+
   approveUser(user: User): void {
     this.listUserService
       .approve(user)
@@ -76,7 +95,7 @@ export class ListUsersComponent implements OnInit {
         () => {
           Swal
             .fire('Sucesso', `${user.nome} aprovado`, 'success')
-            .then(() => this.removeUserFromArray(user));
+            .then(() => this.refreshList());
         },
         () => Swal.fire('Ops...', `Erro interno`, 'error')
       );
@@ -89,13 +108,26 @@ export class ListUsersComponent implements OnInit {
         () => {
           Swal
             .fire('Sucesso', `${user.nome} reprovado`, 'success')
-            .then(() => this.removeUserFromArray(user));
+            .then(() => this.refreshList());
         },
         () => Swal.fire('Ops...', `Erro interno`, 'error')
       );
   }
 
-  removeUserFromArray(user: User): void {
+  deleteUser(user: User): void {
+    this.listUserService
+      .delete(user)
+      .subscribe(
+        () => {
+          Swal
+            .fire('Sucesso', `${user.nome} foi removido`, 'success')
+            .then(() => this.refreshList());
+        },
+        () => Swal.fire('Ops...', `Erro interno`, 'error')
+      );
+  }
+
+  refreshList(): void {
     this.listUserService.listUsersPaginatedAndFiltered(1, "")
       .pipe(distinctUntilChanged())
       .subscribe(users => {
