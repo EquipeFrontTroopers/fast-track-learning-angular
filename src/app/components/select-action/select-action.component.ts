@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {faUser, faBook} from '@fortawesome/free-solid-svg-icons';
-import {TokenService} from '../../core/auth/token/token.service';
+import {TokenService} from '../../core/service/token.service';
 
 @Component({
   selector: 'app-select-action',
