@@ -8,7 +8,7 @@ import {TokenService} from '../../core/service/token.service';
   styleUrls: ['./select-action.component.scss']
 })
 export class SelectActionComponent implements OnInit {
-  redirectUrl = 'https://fast-react-3f370.web.app/token?=';
+  redirectUrl = 'https://fast-react-3f370.web.app?token=';
   faUser = faUser;
   faBook = faBook;
 

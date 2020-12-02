@@ -74,7 +74,7 @@ export class AuthAppService{
     );
   }
 
-  SignUp(email: string, password: string, nickName: string){
+  SignUp(email: string, password: string, nickName: string): Promise<any>{
 
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -84,11 +84,11 @@ export class AuthAppService{
         const newData = {
           nickname: nickName,
           email: user.email,
-          tipoUsuarioId: 1,
+          tipoUsuarioId: 2,
           acessoAprovado: false
         };
 
-        this.http.post(API + 'usuarios', newData).subscribe();
+        this.http.post(API + '/usuarios', newData).subscribe();
 
         Swal.fire({
           title: 'Sucesso',

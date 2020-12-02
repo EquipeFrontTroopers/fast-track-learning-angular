@@ -22,7 +22,7 @@ export class FormSignInComponent implements OnInit {
       email: [
         '',
         [
-          Validators.required, Validators.email, Validators.pattern('[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?')
+          Validators.required, Validators.email
         ]
       ],
       password: [
@@ -56,14 +56,15 @@ export class FormSignInComponent implements OnInit {
 
       if (this.formSignIn.valid && !this.formSignIn.pending) {
         this.authAppService.login(email, password).then();
-      } else if (this.formSignIn.get('email').errors && this.formSignIn.get('email').errors.pattern) {
-        Swal.fire({
-          title: 'Erro',
-          html: 'O E-mail informado não é um e-mail compasso válido!',
-          icon: 'warning',
-          cancelButtonText: 'Ok'
-        });
       }
+      // else if (this.formSignIn.get('email').errors && this.formSignIn.get('email').errors.pattern) {
+      //   Swal.fire({
+      //     title: 'Erro',
+      //     html: 'O E-mail informado não é um e-mail compasso válido!',
+      //     icon: 'warning',
+      //     cancelButtonText: 'Ok'
+      //   });
+      // }
     }
   }
 }
