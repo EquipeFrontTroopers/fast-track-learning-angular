@@ -1,21 +1,21 @@
 /*
 Error: wrong number of arguments (2 for 3) for `rgb'
-        on line 30 of list-users.component.scss
+        on line 44 of list-users.component.scss
 
-25: }
-26: 
-27: .list-users__table th {
-28:   margin: 0;
-29:   padding: 1rem;
-30:   border: 1px solid rgb($gray, .4);
-31: }
-32: 
-33: .list-users__table td {
-34:   margin: 0;
-35:   vertical-align: middle !important;
+39: }
+40: 
+41: .list-users__table th {
+42:   margin: 0;
+43:   padding: 1rem;
+44:   border: 1px solid rgb($gray, .4);
+45: }
+46: 
+47: .list-users__table td {
+48:   margin: 0;
+49:   vertical-align: middle !important;
 
 Backtrace:
-list-users.component.scss:30
+list-users.component.scss:44
 C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:311:in `reformat_argument_error'
 C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:158:in `rescue in _perform'
 C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:127:in `_perform'
@@ -68,4 +68,4 @@ C:/Ruby27-x64/bin/sass:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: wrong number of arguments (2 for 3) for `rgb'\A         on line 30 of list-users.component.scss\A \A 25: }\A 26: \A 27: .list-users__table th {\A 28:   margin: 0;\A 29:   padding: 1rem;\A 30:   border: 1px solid rgb($gray, .4);\A 31: }\A 32: \A 33: .list-users__table td {\A 34:   margin: 0;\A 35:   vertical-align: middle !important;"; }
+  content: "Error: wrong number of arguments (2 for 3) for `rgb'\A         on line 44 of list-users.component.scss\A \A 39: }\A 40: \A 41: .list-users__table th {\A 42:   margin: 0;\A 43:   padding: 1rem;\A 44:   border: 1px solid rgb($gray, .4);\A 45: }\A 46: \A 47: .list-users__table td {\A 48:   margin: 0;\A 49:   vertical-align: middle !important;"; }
