@@ -1,11 +1,25 @@
 import {TokenService} from './token.service';
+import {TestBed} from '@angular/core/testing';
 
 describe('O serviço TokenService', () => {
 
-  let token, service;
+  let service: TokenService;
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImp0aSI6Ijk1MjJiZjgwLTQ4NjktNGM5Yy05MmIxLTQwNTg1ZDkzNTUyNCIsImlhdCI6MTYwNjkzODQ4MiwiZXhwIjoxNjA2OTQyMDgyfQ.ax-lMb-SwZwudk4_OGgDhnNafUTNFPY8wc8QPeowZRI';
 
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [],
+      imports: [],
+      providers: [
+        TokenService
+      ]
+    })
+      .compileComponents();
+  });
+  beforeEach(() => {
+    service = TestBed.inject(TokenService);
+  });
   it('Deve ser instanciado', () => {
-    service = new TokenService();
     expect(service).toBeTruthy();
   });
 
@@ -25,11 +39,6 @@ describe('O serviço TokenService', () => {
 
   afterEach(() => {
     localStorage.clear();
-  });
-
-  beforeEach(() => {
-    token = 'valorDoToken';
-    service = new TokenService();
   });
 
 });
