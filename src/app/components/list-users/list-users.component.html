@@ -5,57 +5,66 @@
   </div>
 
   <div class="list-users__buttons">
-    <app-button title="Filtrar">
-      <fa-icon [icon]="faFilter"></fa-icon>
-      Filtrar
-    </app-button>
+    <input type="text" (keyup)="filterUsers($event)" [value]="filter"
+      placeholder="Pesquisar nome do usuário">
+
     <app-button title="Adicionar usuário" (click)="addUserAlert()">
       <fa-icon [icon]="faPlusCircle"></fa-icon>
       Adicionar usuário
     </app-button>
   </div>
-
+  <div class="list-users__pages--info">
+    <p>Página {{currentPage}} de {{totalPages}}</p>
+  </div>
   <div class="list-users__table--responsive">
     <table class="list-users__table">
       <thead>
-      <tr>
-        <th>NOME</th>
-        <th>EMAIL</th>
-        <th>PERMISSÃO</th>
-        <th>ACÃO</th>
-      </tr>
+        <tr>
+          <th>NOME</th>
+          <th>EMAIL</th>
+          <th>PERMISSÃO</th>
+          <th>ACÃO</th>
+        </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users">
 
-        <td>
-          {{user.nome}}
-        </td>
+          <td>
+            {{user.nome}}
+          </td>
 
-        <td>
-          {{user.email}}
-        </td>
+          <td>
+            {{user.email}}
+          </td>
 
-        <td>
-          {{getTypeUserById(user.tipoUsuarioId)?.descricao}}
-        </td>
+          <td>
+            {{getTypeUserById(user.tipoUsuarioId)?.descricao}}
+          </td>
 
-        <td>
-          <app-button *ngIf="user.acessoAprovado"
-                      title="Aprovar/Reprovar usuário"
-                      (click)="approveUserAlert(user)">
-            <fa-icon [icon]="faCheck"></fa-icon>/<fa-icon [icon]="faTimes"></fa-icon>
-          </app-button>
+          <td>
+            <app-button *ngIf="user.acessoAprovado" title="Aprovar/Reprovar usuário"
+              (click)="approveUserAlert(user)">
+              <fa-icon [icon]="faCheck"></fa-icon>/<fa-icon [icon]="faTimes"></fa-icon>
+            </app-button>
 
-          <app-button title="Editar" (click)="editUserAlert(user)">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </app-button>
-        </td>
+            <app-button title="Editar" (click)="editUserAlert(user)">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </app-button>
+          </td>
 
-      </tr>
+        </tr>
       </tbody>
     </table>
+    <div class="list-users__table--navigation">
+      <app-button (click)="previousPage()" [disabled]="!hasLess" title="Anterior">
+        <fa-icon [icon]="faChevronLeft"></fa-icon>
+        Anterior
+      </app-button>
+
+      <app-button (click)="nextPage()" [disabled]="!hasMore" title="Próximo">
+        Próximo
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </app-button>
+    </div>
   </div>
-
 </div>
-

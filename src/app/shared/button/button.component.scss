@@ -16,6 +16,10 @@ button {
   &:focus {
     outline: none;
   }
+  &:disabled{
+    background-color: #ffd56a;
+    cursor: default;
+  }
 }
 
 .btn-block {

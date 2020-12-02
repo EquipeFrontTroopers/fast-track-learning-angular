@@ -2,20 +2,34 @@ $gray: #4B5C6B;
 
 .list-users__title {
   text-align: center;
-  margin: 3em 0;
+  margin: 1em 0;
 }
 
 .list-users__buttons {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin: 3em 0;
+  margin: 2em 0;
+  input{
+    width: 20rem;
+    padding: 1rem;
+    border-radius: 4px;
+    border-color: #4B5C6B;
+    &::placeholder{
+      color: $gray;
+    }
+    &:focus{
+      outline: none;
+      border-color: #f7b718;
+    }
+  }
 }
 
 .list-users__table--responsive {
   display: block;
   width: 100%;
   overflow-x: auto;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
 }
 
 .list-users__table {
@@ -33,6 +47,19 @@ $gray: #4B5C6B;
 .list-users__table td {
   margin: 0;
   vertical-align: middle !important;
-  padding: .75rem;
+  padding: .15rem;
   border: 1px solid rgb($gray, .4);
+}
+
+.list-users__table--navigation{
+  display: flex;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+
+.list-users__pages--info{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
 }
