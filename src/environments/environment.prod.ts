@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  ApiUrl: 'http://18.225.7.114:8050/',
+  ApiUrl: 'https://app-fast.herokuapp.com',
   firebase: {
     apiKey: 'AIzaSyBdeyMkeS1hEjXjToRRV4mNhUXa75T_-aE',
     authDomain: 'fast-939d3.firebaseapp.com',

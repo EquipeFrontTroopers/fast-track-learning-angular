@@ -84,11 +84,11 @@ export class AuthAppService{
         const newData = {
           nickname: nickName,
           email: user.email,
-          tipoUsuarioId: 1,
+          tipoUsuarioId: 2,
           acessoAprovado: false
         };
 
-        this.http.post(API + 'usuarios', newData).subscribe();
+        this.http.post(API + '/usuarios', newData).subscribe();
 
         Swal.fire({
           title: 'Sucesso',
