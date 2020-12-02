@@ -43,6 +43,10 @@ export class ListUserService extends AbstractService {
     return this.http.put<any>(`${this.urlBase}/usuarios/${user.id}`, user);
   }
 
+  delete(user: User): Observable<any> {
+    return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
+  }
+
   reject(user: User): Observable<any> {
     return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
