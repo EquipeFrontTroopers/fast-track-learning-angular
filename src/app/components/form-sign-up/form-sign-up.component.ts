@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {debounceTime, filter} from 'rxjs/operators';
-import {AuthAppService} from '../../core/service/auth-app.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { debounceTime, filter } from 'rxjs/operators';
+import { AuthAppService } from '../../core/service/auth-app.service';
 
 @Component({
   selector: 'app-form-sign-up',
@@ -14,9 +14,9 @@ export class FormSignUpComponent implements OnInit {
   formSignUp: FormGroup;
 
   constructor(
-              private authAppService: AuthAppService,
-              private formBuilder: FormBuilder,
-              private router: Router) {
+    private authAppService: AuthAppService,
+    private formBuilder: FormBuilder,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,10 +29,10 @@ export class FormSignUpComponent implements OnInit {
         [
           '', [Validators.required, Validators.minLength(3)]
         ],
-      // name:
-      //   [
-      //     '', [Validators.required, Validators.minLength(3)]
-      //   ],
+      name:
+        [
+          '', [Validators.required, Validators.minLength(3)]
+        ],
       password:
         [
           '', [Validators.required, Validators.minLength(8)]
@@ -45,7 +45,7 @@ export class FormSignUpComponent implements OnInit {
 
     this.formSignUp.get('passwordRepeat').valueChanges.subscribe((value: string) => {
       if (this.formSignUp.get('password').value !== value) {
-        this.formSignUp.get('passwordRepeat').setErrors({invalid: true});
+        this.formSignUp.get('passwordRepeat').setErrors({ invalid: true });
       } else {
         this.formSignUp.get('passwordRepeat').clearValidators();
       }
@@ -72,9 +72,10 @@ export class FormSignUpComponent implements OnInit {
     const email = this.formSignUp.get('email').value;
     const password = this.formSignUp.get('password').value;
     const nickName = this.formSignUp.get('nickname').value;
+    const name = this.formSignUp.get('name').value;
 
     if (this.formSignUp.valid) {
-      this.authAppService.SignUp(email, password, nickName).then();
+      this.authAppService.SignUp(email, password, nickName, name).then();
     }
   }
 }

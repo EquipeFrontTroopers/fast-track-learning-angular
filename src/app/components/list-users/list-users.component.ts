@@ -247,8 +247,8 @@ export class ListUsersComponent implements OnInit {
               .update(userUpdate)
               .subscribe(
                 () => {
-                  this.getTypesAndUsers();
                   Swal.fire('Sucesso', `${user.nome} atualizado`, 'success').then();
+                  this.refreshList()
                 },
                 () => Swal.fire('Ops...', `Erro interno`, 'error').then()
               );
