@@ -5,17 +5,23 @@
   </div>
 
   <div class="list-users__buttons">
-    <input type="text" (keyup)="filterUsers($event)" [value]="filter"
-      placeholder="Pesquisar nome do usuário">
+    <input class="form-content-item"
+           type="text"
+           id="search"
+           (keyup)="filterUsers($event)"
+           [value]="filter"
+           placeholder="Pesquisar nome de usuário">
 
     <app-button title="Adicionar usuário" (click)="addUserAlert()">
       <fa-icon [icon]="faPlusCircle"></fa-icon>
       Adicionar usuário
     </app-button>
   </div>
+
   <div class="list-users__pages--info">
     <p>Página {{currentPage}} de {{totalPages}}</p>
   </div>
+
   <div class="list-users__table--responsive">
     <table class="list-users__table">
       <thead>
@@ -61,16 +67,18 @@
         </tr>
       </tbody>
     </table>
-    <div class="list-users__table--navigation">
-      <app-button (click)="previousPage()" [disabled]="!hasLess" title="Anterior">
-        <fa-icon [icon]="faChevronLeft"></fa-icon>
-        Anterior
-      </app-button>
-
-      <app-button (click)="nextPage()" [disabled]="!hasMore" title="Próximo">
-        Próximo
-        <fa-icon [icon]="faChevronRight"></fa-icon>
-      </app-button>
-    </div>
   </div>
+
+  <div class="list-users__table--navigation">
+    <app-button (click)="previousPage()" [disabled]="!hasLess" title="Anterior">
+      <fa-icon [icon]="faChevronLeft"></fa-icon>
+      Anterior
+    </app-button>
+
+    <app-button (click)="nextPage()" [disabled]="!hasMore" title="Próximo">
+      Próximo
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+    </app-button>
+  </div>
+
 </div>

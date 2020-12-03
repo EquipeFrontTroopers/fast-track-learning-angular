@@ -78,10 +78,11 @@ export class ListUsersComponent implements OnInit {
         title: `Atenção`,
         html: `Deseja realmente remover o acesso do usuário ${user.nome}?`,
         icon: 'warning',
-        confirmButtonColor: 'orange',
+        confirmButtonColor: 'red',
         confirmButtonText: 'Sim',
         showDenyButton: true,
-        denyButtonText: 'Não'
+        denyButtonText: 'Não',
+        denyButtonColor: 'orange'
       })
       .then(value => {
         if (value.isConfirmed) {
@@ -281,6 +282,7 @@ export class ListUsersComponent implements OnInit {
           <input type="hidden" id="id" name="id" value="${user.id}">
           <input type="hidden" id="acessoAprovado" name="acessoAprovado" value="${user.acessoAprovado}">
 
+          <label for="nome"></label>
           <input class="form-content-item"
           type="text"
           name="nome"
@@ -289,6 +291,7 @@ export class ListUsersComponent implements OnInit {
           value="${user.nome}"
           required>
 
+          <label for="nickname"></label>
           <input class="form-content-item"
           type="text"
                 name="nickname"
@@ -298,14 +301,16 @@ export class ListUsersComponent implements OnInit {
                 required>
 
 
+          <label for="email"></label>
           <input class="form-content-item"
-                type="hidden"
+                type="${user.id ? 'hidden' : "text"}"
                 name="email"
                 id="email"
                 placeholder="Email"
                 value="${user.email}"
                 required>
-
+     
+          <label for="senha"></label>
           <input
             id="senha"
             type="${user.id ? 'hidden' : "password"}"
@@ -316,6 +321,7 @@ export class ListUsersComponent implements OnInit {
             minlength="6"
             >
 
+          <label for="tipoUsuarioId"></label>
           <select class="form-content-item" id="tipoUsuarioId" required>
               <option value="0" disabled ${user.tipoUsuarioId === 0 && 'selected'}>-- selecione uma permissão --</option>
               ${this.typesUser.map(t => {

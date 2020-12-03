@@ -1,31 +1,44 @@
-<section>
-  <div class="left">
-    <div class="container">
-      <img src="../../../assets/img/login.svg">
-    </div>
+<section class="container">
+
+  <div class="container__item">
+    <img src="../../../assets/img/login.svg" alt="Menina sentada em livros segurando um livro">
   </div>
-  <div class="right">
-    <div class="container">
-      <form [formGroup]="formSignIn" (ngSubmit)="login()" #form="ngForm">
-        <h1>FAST TRACK LEARNING</h1>
-        <div class="form-group">
-          <input class="form-content-item" type="text"
-            placeholder="Email ou nome de usuário" formControlName="email">
-        </div>
-        <div class="form-group">
-          <input type="password" placeholder="Senha" class="form-content-item"
-            formControlName="password">
-        </div>
-        <!--        <div class="form-group">-->
-        <!--          <input type="checkbox"> Lembrar-me-->
-        <!--        </div>-->
-        <div class="form-group">
-          <input type="submit" value="Login" class="btn-default">
-        </div>
-        <div class="form-group p-10">
-          <span>Não possui acesso?<a [routerLink]="['/sign-up']"> Criar acesso</a></span>
-        </div>
-      </form>
-    </div>
+
+  <div class="container__item">
+    <form [formGroup]="formSignIn">
+      <h1 class="container__title">FAST TRACK LEARNING</h1>
+
+      <div class="form-group">
+        <label for="email"></label>
+        <input class="form-content-item"
+               type="text"
+               id="email"
+               placeholder="Email ou nome de usuário"
+               formControlName="email">
+      </div>
+
+      <div class="form-group">
+        <label for="password"></label>
+        <input type="password"
+               id="password"
+               placeholder="Senha"
+               class="form-content-item"
+               formControlName="password">
+      </div>
+
+      <div class="form-group">
+        <app-button [disabled]="this.formSignIn.invalid"
+                    [btnBlock]="true"
+                    (click)="login()">
+          Login
+        </app-button>
+      </div>
+
+      <div class="form-group">
+        <span>Não possui acesso?<a [routerLink]="['/sign-up']"> Criar acesso</a></span>
+      </div>
+
+    </form>
   </div>
+
 </section>

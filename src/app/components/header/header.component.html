@@ -3,16 +3,15 @@
 
     <div class="navbar__logo">
       <a [routerLink]="''" title="Página inicial">
-        <img class="navbar__logo__image"
-             src="./assets/img/logo-compasso.png"
-             alt="Logo Compasso UOL">
+        <img class="navbar__logo__image" src="./assets/img/logo-compasso.png"
+          alt="Logo Compasso UOL">
       </a>
     </div>
 
     <div class="navbar__items" *ngIf="isLogged()">
       <ul>
         <li>
-          {{(user | async)?.nickname}}
+          {{(user | async)?.nome}}
         </li>
         <li>
           <button (click)="logoutConfirm()">
