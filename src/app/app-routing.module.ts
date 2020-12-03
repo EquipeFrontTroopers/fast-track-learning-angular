@@ -7,7 +7,6 @@ import { SelectActionComponent } from './components/select-action/select-action.
 import { AuthRequiredGuard } from './core/auth/auth-required.guard';
 import { ListUserResolver } from './components/list-users/list-users.resolver';
 import { ListUsersComponent } from './components/list-users/list-users.component';
-import {PermissionGuard} from './core/auth/permission.guard';
 
 const routes: Routes = [
 
@@ -15,7 +14,7 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthRequiredGuard],
     children: [
-      { path: '', redirectTo: 'select-action', pathMatch: 'full', canActivate: [PermissionGuard] },
+      { path: '', redirectTo: 'select-action', pathMatch: 'full'},
       { path: 'select-action', component: SelectActionComponent, data: { title: 'Selecionar Ação' } },
       {
         path: 'list-users',

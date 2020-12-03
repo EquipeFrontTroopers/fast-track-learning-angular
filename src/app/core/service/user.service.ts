@@ -17,7 +17,9 @@ export class UserService {
     private http: HttpClient,
     private tokenService: TokenService
   ) {
-    tokenService.hasToken() && this.decodeAndNotify();
+    if ( tokenService.hasToken() ){
+      this.decodeAndNotify();
+    }
   }
 
   private decodeAndNotify(): void {

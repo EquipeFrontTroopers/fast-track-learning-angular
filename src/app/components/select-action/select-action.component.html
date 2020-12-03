@@ -1,8 +1,6 @@
 <div class="container">
-
   <section class="actions">
-
-    <a [routerLink]="'./../list-users'" class="actions__link">
+    <a *ngIf="userType == 2;" [routerLink]="'./../list-users'" class="actions__link">
       <div class="actions__icon">
         <fa-icon [icon]="faUser" size="6x"></fa-icon>
       </div>
@@ -15,7 +13,5 @@
       </div>
       <div class="actions__title">LISTA DE CONTEÚDOS</div>
     </a>
-
   </section>
-
 </div>
