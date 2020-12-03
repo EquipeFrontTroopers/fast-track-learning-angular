@@ -35,7 +35,9 @@ export class HeaderComponent implements OnInit {
         icon: 'info',
         showCancelButton: true,
         cancelButtonText: 'Não',
-        confirmButtonText: 'Sim'
+        cancelButtonColor: 'orange',
+        confirmButtonText: 'Sim',
+        confirmButtonColor: 'red'
       })
       .then(value => {
         if (value.isConfirmed) {

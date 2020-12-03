@@ -56,7 +56,7 @@ describe('O componente FormSignUpComponent', () => {
     expect(spySubmit).toHaveBeenCalled();
 
     const spySignUp = spyOn(authAppService, 'SignUp').and.returnValue(null);
-    authAppService.SignUp('', '', '');
+    authAppService.SignUp('', '', '', '');
     expect(spySignUp).toHaveBeenCalled();
   });
 

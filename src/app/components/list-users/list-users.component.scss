@@ -2,7 +2,7 @@ $gray: #4B5C6B;
 
 .list-users__title {
   text-align: center;
-  margin: 1em 0;
+  margin: 5em  0 2em 0;
 }
 
 .list-users__buttons {
@@ -12,16 +12,6 @@ $gray: #4B5C6B;
   margin: 2em 0;
   input{
     width: 20rem;
-    padding: 1rem;
-    border-radius: 4px;
-    border-color: #4B5C6B;
-    &::placeholder{
-      color: $gray;
-    }
-    &:focus{
-      outline: none;
-      border-color: #f7b718;
-    }
   }
 }
 
