@@ -5,6 +5,7 @@ import { Subject, forkJoin } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { faCheck, faTimes, faEdit, faPlusCircle, faFilter, faChevronLeft, faChevronRight, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { User } from '../../core/model/user';
 import { ListUserService } from '../../core/service/list-user.service';
@@ -37,7 +38,8 @@ export class ListUsersComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private listUserService: ListUserService
+    private listUserService: ListUserService,
+    public afAuth: AngularFireAuth
   ) {
   }
 
@@ -221,8 +223,14 @@ export class ListUsersComponent implements OnInit {
               .save(userSave)
               .subscribe(
                 () => {
-                  Swal.fire('Sucesso', `${userSave.nome} atualizado`, 'success').then();
-                  this.refreshList();
+                  console.log(userSave);
+                  this.afAuth.createUserWithEmailAndPassword(userSave.email, userSave.senha)
+                    .then((result) => {
+                      console.log(result);
+                      result.user.sendEmailVerification();
+                      Swal.fire('Sucesso', `${userSave.nome} atualizado`, 'success').then();
+                      this.refreshList();
+                    });
                 },
                 () => Swal.fire('Ops...', `Erro interno`, 'error').then()
               );
@@ -272,25 +280,24 @@ export class ListUsersComponent implements OnInit {
 
           <input type="hidden" id="id" name="id" value="${user.id}">
           <input type="hidden" id="acessoAprovado" name="acessoAprovado" value="${user.acessoAprovado}">
-          <input type="hidden" id="senha" name="senha" value="${user.senha}">
 
           <input class="form-content-item"
-                type="text"
-                name="nome"
-                id="nome"
-                placeholder="Nome"
-                value="${user.nome}"
-                required>
+          type="text"
+          name="nome"
+          id="nome"
+          placeholder="Nome"
+          value="${user.nome}"
+          required>
 
           <input class="form-content-item"
-                type="text"
+          type="text"
                 name="nickname"
                 id="nickname"
                 placeholder="Nickname"
                 value="${user.nickname}"
                 required>
 
-          <input class="form-content-item"
+                <input class="form-content-item"
                 type="text"
                 name="email"
                 pattern="[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?"
@@ -298,6 +305,16 @@ export class ListUsersComponent implements OnInit {
                 placeholder="Email"
                 value="${user.email}"
                 required>
+
+          <input
+            id="senha"
+            type="${user.id ? 'hidden' : "password"}"
+            name="senha"
+            value="${user.senha}"
+            class="form-content-item"
+            placeholder="Senha"
+            minlength="6"
+            >
 
           <select class="form-content-item" id="tipoUsuarioId" required>
               <option value="0" disabled ${user.tipoUsuarioId === 0 && 'selected'}>-- selecione uma permissão --</option>
