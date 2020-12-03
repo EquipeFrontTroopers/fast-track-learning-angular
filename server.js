@@ -11,7 +11,7 @@ admin.initializeApp({
 
 
 app.use(express.static("App"));
-app.get('/', function (req, res,next) {
+app.get('/deleteUser', function (req, res,next) {
 
 const email = req.query.email;
   admin
@@ -28,5 +28,5 @@ const email = req.query.email;
     })
 
 });
-app.listen(8090, 'localhost');
+app.listen(80, 'localhost');
 console.log("Fast Track está em execução!");
