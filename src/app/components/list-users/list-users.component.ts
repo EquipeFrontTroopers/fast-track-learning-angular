@@ -73,13 +73,14 @@ export class ListUsersComponent implements OnInit {
   removeUserAlert(user: User): void {
     Swal
       .fire({
-        title: `Atenção`,
+        title: `Remover o usuário`,
         html: `Deseja realmente remover o usuário ${user.nome}?`,
         icon: 'warning',
-        confirmButtonColor: 'orange',
+        confirmButtonColor: 'red',
         confirmButtonText: 'Sim',
         showDenyButton: true,
-        denyButtonText: 'Não'
+        denyButtonText: 'Não',
+        denyButtonColor: 'orange'
       })
       .then(value => {
         if (value.isConfirmed) {
@@ -274,6 +275,7 @@ export class ListUsersComponent implements OnInit {
           <input type="hidden" id="acessoAprovado" name="acessoAprovado" value="${user.acessoAprovado}">
           <input type="hidden" id="senha" name="senha" value="${user.senha}">
 
+          <label for="nome"></label>
           <input class="form-content-item"
                 type="text"
                 name="nome"
@@ -282,6 +284,7 @@ export class ListUsersComponent implements OnInit {
                 value="${user.nome}"
                 required>
 
+          <label for="nickname"></label>
           <input class="form-content-item"
                 type="text"
                 name="nickname"
@@ -290,6 +293,7 @@ export class ListUsersComponent implements OnInit {
                 value="${user.nickname}"
                 required>
 
+          <label for="email"></label>
           <input class="form-content-item"
                 type="text"
                 name="email"
@@ -299,6 +303,7 @@ export class ListUsersComponent implements OnInit {
                 value="${user.email}"
                 required>
 
+          <label for="tipoUsuarioId"></label>
           <select class="form-content-item" id="tipoUsuarioId" required>
               <option value="0" disabled ${user.tipoUsuarioId === 0 && 'selected'}>-- selecione uma permissão --</option>
               ${this.typesUser.map(t => {
