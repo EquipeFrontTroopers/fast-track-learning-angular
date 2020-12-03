@@ -1,6 +1,6 @@
 <div class="container">
   <section class="actions">
-    <a *ngIf="userType == 2;" [routerLink]="'./../list-users'" class="actions__link">
+    <a *ngIf="userType === 1;" [routerLink]="'./../list-users'" class="actions__link">
       <div class="actions__icon">
         <fa-icon [icon]="faUser" size="6x"></fa-icon>
       </div>
