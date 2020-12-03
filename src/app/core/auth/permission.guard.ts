@@ -19,6 +19,8 @@ export class PermissionGuard implements CanActivate{
       if (user[0].tipoUsuarioId === 2 ){
         const url = 'https://fast-react-3f370.web.app?token=' + this.tokenService.getToken();
         window.location.href = url;
+      }else{
+        this.router.navigateByUrl('select-action');
       }
     });
   }
