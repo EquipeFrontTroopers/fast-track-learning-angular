@@ -22,8 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.userService.getUser().subscribe( user => {
-      console.log(user)
-      if (user[0].tipoUsuarioId === 2 ){
+      if (user[0]?.tipoUsuarioId === 2 ){
         const url = 'https://fast-react-3f370.web.app?token=' + this.tokenService.getToken();
         window.location.href = url;
       }else{
