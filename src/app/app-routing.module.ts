@@ -15,11 +15,12 @@ const routes: Routes = [
     path: '',
     canActivate: [AuthRequiredGuard],
     children: [
-      { path: '', redirectTo: 'select-action', pathMatch: 'full', canActivate: [PermissionGuard] },
-      { path: 'select-action', component: SelectActionComponent, data: { title: 'Selecionar Ação' } },
+      { path: '', redirectTo: 'select-action', pathMatch: 'full'},
+      { path: 'select-action', component: SelectActionComponent, data: { title: 'Selecionar Ação' }  },
       {
         path: 'list-users',
         component: ListUsersComponent,
+        canActivate: [PermissionGuard],
         resolve: {
           listUsers: ListUserResolver
         },
