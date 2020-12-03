@@ -47,22 +47,24 @@ export class FormSignInComponent implements OnInit {
     const newPassword = this.formSignIn.get('new_password').value;
     this.userService.getUserByEmail(email)
       .subscribe(user => {
-        if (remember) {
-          Swal.fire({
-            html: 'Se o E-mail informado for válido, enviaremos um link de confirmação para ' + email,
-            icon: 'success',
-            cancelButtonText: 'Enviar'
-          });
-        } else {
-          if (this.formSignIn.valid && !this.formSignIn.pending) {
-            if (user[0].acessoAprovado) {
-              this.authAppService.login(email, password).then();
-            } else {
-              Swal.fire({
-                html: 'O seu acesso não está liberado',
-                icon: 'info',
-                cancelButtonText: 'Fechar'
-              });
+        if (user[0]) {
+          if (remember) {
+            Swal.fire({
+              html: 'Se o E-mail informado for válido, enviaremos um link de confirmação para ' + email,
+              icon: 'success',
+              cancelButtonText: 'Enviar'
+            });
+          } else {
+            if (this.formSignIn.valid && !this.formSignIn.pending) {
+              if (user[0].acessoAprovado) {
+                this.authAppService.login(email, password).then();
+              } else {
+                Swal.fire({
+                  html: 'O seu acesso não está liberado',
+                  icon: 'info',
+                  cancelButtonText: 'Fechar'
+                });
+              }
             }
           }
           // else if (this.formSignIn.get('email').errors && this.formSignIn.get('email').errors.pattern) {
@@ -73,6 +75,12 @@ export class FormSignInComponent implements OnInit {
           //     cancelButtonText: 'Ok'
           //   });
           // }
+        } else {
+          Swal.fire({
+            html: 'Usuário não encontrado',
+            icon: 'warning',
+            cancelButtonText: 'Fechar'
+          });
         }
       });
   }
