@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../../core/model/user';
 import { ListUserService } from '../../core/service/list-user.service';
 import { TypeUser } from '../../core/model/type-user';
+import {UserService} from '../../core/service/user.service';
 
 @Component({
   selector: 'app-list-users',
@@ -35,15 +36,18 @@ export class ListUsersComponent implements OnInit {
   hasMore: boolean = false;
   hasLess: boolean = false;
   debounce: Subject<string> = new Subject<string>();
+  currentUser: User;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private listUserService: ListUserService,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private userService: UserService
   ) {
   }
 
   ngOnInit(): void {
+    this.userService.getUser().subscribe(user => this.currentUser = user[0]);
     this.getTypesAndUsers();
     this.initializeListPagination();
   }
@@ -309,7 +313,7 @@ export class ListUsersComponent implements OnInit {
                 placeholder="Email"
                 value="${user.email}"
                 required>
-     
+
           <label for="senha"></label>
           <input
             id="senha"
@@ -322,12 +326,15 @@ export class ListUsersComponent implements OnInit {
             >
 
           <label for="tipoUsuarioId"></label>
-          <select class="form-content-item" id="tipoUsuarioId" required>
+          <select class="form-content-item"
+                  id="tipoUsuarioId"
+                  ${user.id === this.currentUser.id ? 'disabled' : ''}
+                   required>
               <option value="0" disabled ${user.tipoUsuarioId === 0 && 'selected'}>-- selecione uma permissão --</option>
               ${this.typesUser.map(t => {
-      return `<option value="${t.id}" ${user.tipoUsuarioId === t.id && 'selected'}>${t.descricao}</option>`;
-    })}
-          </select>
+                return `<option value="${t.id}" ${user.tipoUsuarioId === t.id && 'selected'}>${t.descricao}</option>`;
+              })}
+            </select>
 
       </form>
     `;
