@@ -82,7 +82,7 @@ export class AuthAppService {
         const user = JSON.parse(JSON.stringify(result.user));
 
         const newData = {
-          name: name,
+          nome: name,
           nickname: nickName,
           email: user.email,
           tipoUsuarioId: 2,
