@@ -46,7 +46,6 @@ export class ListUserService extends AbstractService {
 
   delete(user: User): Observable<any> {
     return this.http.patch<any>(`${this.urlBase}/usuarios/${user.id}`, { acessoAprovado: false });
-    // return this.http.delete<any>(`${this.urlBase}/usuarios/${user.id}`);
   }
 
   reject(user: User): Observable<any> {
