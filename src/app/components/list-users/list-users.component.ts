@@ -75,8 +75,8 @@ export class ListUsersComponent implements OnInit {
   removeUserAlert(user: User): void {
     Swal
       .fire({
-        title: `Remover o usuário`,
-        html: `Deseja realmente remover o usuário ${user.nome}?`,
+        title: `Atenção`,
+        html: `Deseja realmente remover o acesso do usuário ${user.nome}?`,
         icon: 'warning',
         confirmButtonColor: 'red',
         confirmButtonText: 'Sim',
@@ -300,11 +300,11 @@ export class ListUsersComponent implements OnInit {
                 value="${user.nickname}"
                 required>
 
+
           <label for="email"></label>
           <input class="form-content-item"
-                type="text"
+                type="${user.id ? 'hidden' : "text"}"
                 name="email"
-                pattern="[a-z0-9.]+@(compasso)+\.[a-z]+(\.[a-z]+)?"
                 id="email"
                 placeholder="Email"
                 value="${user.email}"

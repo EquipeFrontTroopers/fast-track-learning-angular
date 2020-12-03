@@ -59,7 +59,7 @@ export class FormSignInComponent implements OnInit {
               this.authAppService.login(email, password).then();
             } else {
               Swal.fire({
-                html: 'O seu acesso ainda não foi liberado pelo Gestor',
+                html: 'O seu acesso não está liberado',
                 icon: 'info',
                 cancelButtonText: 'Fechar'
               });
