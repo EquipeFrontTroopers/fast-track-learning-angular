@@ -8,7 +8,7 @@
 
 # :page_facing_up: Sobre
 :orange_book: Fast Track Learning - é uma forma facilitada para os gestores gerenciarem os estudos,cursos e conteúdos que são sugeridos aos colaboradores no programa Fast Track possam consumir.
-```bash
+
   Requisitos de desenvolvimento:
     - Desenvolvimento de uma aplicação Angular e outra React. As duas precisam se
       comunicar e do ponto de vista do usuário, deve parecer apenas uma aplicação;
@@ -20,11 +20,11 @@
     - Pelo menos dois componentes genéricos;
 
   Requisitos de Processos:
-  - Daily;
-  - Code Review;
-  - Mapa de cenários;
-  - Showcase ao final do desafio;
-```
+    - Daily;
+    - Code Review;
+    - Mapa de cenários;
+    - Showcase ao final do desafio;
+
 # :construction_worker: Como executar
 
 ### Executar a aplicação
